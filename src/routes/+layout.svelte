@@ -15,7 +15,7 @@
 
 <AppShell slotSidebarLeft="p-4 flex w-2/5">
 	<svelte:fragment slot="sidebarLeft">
-		<SideBar {selected} on:clicked={(e) => handleClick(e.detail)} />
+		<SideBar {selected} {pannelNo} on:clicked={(e) => handleClick(e.detail)} />
 		<Pannel title="Hey I'm Working!!" {pannelNo} {selected} />
 	</svelte:fragment>
 	<slot />
