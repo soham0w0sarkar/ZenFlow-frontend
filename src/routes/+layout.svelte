@@ -4,8 +4,8 @@
 	import Pannel from '../components/pannel.svelte';
 	import SideBar from '../components/sideBar.svelte';
 
-	let selected = false;
-	let pannelNo;
+	let selected = true;
+	let pannelNo = 1;
 
 	const handleClick = (details) => {
 		selected = details.selected;
