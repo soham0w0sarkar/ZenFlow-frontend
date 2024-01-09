@@ -3,6 +3,8 @@
 	import { AppShell } from '@skeletonlabs/skeleton';
 	import Pannel from '../components/pannel.svelte';
 	import SideBar from '../components/sideBar.svelte';
+	import Qoute from '../components/qoute.svelte';
+	import Widgets from '../components/widgets.svelte';
 
 	let selected = true;
 	let pannelNo = 1;
@@ -13,11 +15,14 @@
 	};
 </script>
 
-<AppShell slotSidebarLeft="p-4 flex w-2/5">
+<AppShell slotSidebarLeft="p-4 flex w-fit" slotPageFooter="static h-1/4 p-4" slotPageHeader="h-1/5 p-4 flex justify-end">
 	<svelte:fragment slot="sidebarLeft">
 		<SideBar {selected} {pannelNo} on:clicked={(e) => handleClick(e.detail)} />
-		<Pannel title="Hey I'm Working!!" {pannelNo} {selected} />
+		<Pannel {pannelNo} {selected} />
+	</svelte:fragment>
+	<svelte:fragment slot="pageHeader">
+		<Widgets />
 	</svelte:fragment>
 	<slot />
-	<svelte:fragment slot="pageFooter"></svelte:fragment>
+	<svelte:fragment slot="pageFooter"><Qoute /></svelte:fragment>
 </AppShell>
