@@ -28,6 +28,7 @@
 	} from '@tabler/icons-svelte';
 </script>
 
+<div class="parent">
 <div
 	class={`h-full w-14 rounded flex flex-col justify-between variant-${
 		selected == true ? 'ghost' : 'glass'
@@ -77,7 +78,7 @@
 	<div class="flex flex-col">
 		<button
 			id="5"
-			class="flex justify-center p-1 m-2"
+			class="flex justify-center p-2 m-1"
 			on:click={(e) => {
 				handleClick(+e.currentTarget.id);
 			}}
@@ -87,7 +88,7 @@
 
 		<button
 			id="6"
-			class="flex justify-center p-1 m-2"
+			class="flex justify-center p-2 m-1"
 			on:click={(e) => {
 				handleClick(+e.currentTarget.id);
 			}}
@@ -96,3 +97,13 @@
 		</button>
 	</div>
 </div>
+</div>
+<style>
+    .variant-glass-surface {
+        transform: translateX(-120%);
+        transition: transform 0.3s ease-in-out;
+    }
+    .parent:hover .variant-glass-surface {
+        transform: translateX(0);
+    }
+</style>
