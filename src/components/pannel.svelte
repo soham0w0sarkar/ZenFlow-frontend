@@ -7,32 +7,39 @@
 		IconSettings,
 		IconUser
 	} from '@tabler/icons-svelte';
-	export let title;
 	export let pannelNo;
 	export let selected;
-
+	
+	let title;
 	let icon;
 	$: {
 		switch (pannelNo) {
 			case 1:
+				title = 'Todo List';
 				icon = IconList;
 				break;
 			case 2:
+				title = 'Calendar';
 				icon = IconCalendar;
 				break;
 			case 3:
+				title = 'Timer';
 				icon = IconHourglassHigh;
 				break;
 			case 4:
+				title = 'Analytics';
 				icon = IconDeviceAnalytics;
 				break;
 			case 5:
+				title = 'Settings';
 				icon = IconSettings;
 				break;
 			case 6:
+				title = 'Profile';
 				icon = IconUser;
 				break;
 			default:
+				title = 'Todo List';
 				icon = IconList;
 		}
 	}
