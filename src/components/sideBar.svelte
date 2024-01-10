@@ -6,11 +6,12 @@
 	export let selected;
 	export let pannelNo;
 
-	const handleClick = (pannel) => {
+	const handleClick = (pannel, title) => {
 		if (pannel == pannelNo) selected = !selected;
 		else selected = true;
 
 		dispatch('clicked', {
+			title: title,
 			selected: selected,
 			pannel: pannel
 		});
@@ -37,8 +38,9 @@
 				id="1"
 				class="flex justify-center p-1 mt-2"
 				on:click={(e) => {
-					handleClick(+e.currentTarget.id);
+					handleClick(+e.currentTarget.id, e.currentTarget.title);
 				}}
+				title="List"
 			>
 				<IconList size={40} />
 			</button>
@@ -47,8 +49,9 @@
 				id="2"
 				class="flex justify-center p-1 m-2"
 				on:click={(e) => {
-					handleClick(+e.currentTarget.id);
+					handleClick(+e.currentTarget.id,  e.currentTarget.title);
 				}}
+				title="Calendar"
 			>
 				<IconCalendar size={40} />
 			</button>
@@ -57,8 +60,9 @@
 				id="3"
 				class="flex justify-center p-1 m-2"
 				on:click={(e) => {
-					handleClick(+e.currentTarget.id);
+					handleClick(+e.currentTarget.id,  e.currentTarget.title);
 				}}
+				title="Timer"
 			>
 				<IconHourglassHigh size={40} />
 			</button>
@@ -67,8 +71,9 @@
 				id="4"
 				class="flex justify-center p-1 m-2"
 				on:click={(e) => {
-					handleClick(+e.currentTarget.id);
+					handleClick(+e.currentTarget.id, e.currentTarget.title);
 				}}
+				title="Analytics"
 			>
 				<IconDeviceAnalytics size={40} />
 			</button>
@@ -78,8 +83,9 @@
 				id="5"
 				class="flex justify-center p-2 m-1"
 				on:click={(e) => {
-					handleClick(+e.currentTarget.id);
+					handleClick(+e.currentTarget.id, e.currentTarget.title);
 				}}
+				title="Settings"
 			>
 				<IconSettings size={40} />
 			</button>
@@ -88,8 +94,9 @@
 				id="6"
 				class="flex justify-center p-2 m-1"
 				on:click={(e) => {
-					handleClick(+e.currentTarget.id);
+					handleClick(+e.currentTarget.id, e.currentTarget.title);
 				}}
+				title="Profile"
 			>
 				<IconUser size={40} />
 			</button>

@@ -8,17 +8,19 @@
 
 	let selected = true;
 	let pannelNo = 1;
+	let title = 'List';
 
 	const handleClick = (details) => {
 		selected = details.selected;
 		pannelNo = details.pannel;
+		title = details.title;
 	};
 </script>
 
 <AppShell slotSidebarLeft="p-4 flex w-fit" slotPageFooter="static h-1/4 p-4" slotPageHeader="h-1/5 p-4 flex justify-end">
 	<svelte:fragment slot="sidebarLeft">
 		<SideBar {selected} {pannelNo} on:clicked={(e) => handleClick(e.detail)} />
-		<Pannel {pannelNo} {selected} />
+		<Pannel {title} {pannelNo} {selected} />
 	</svelte:fragment>
 	<svelte:fragment slot="pageHeader">
 		<Widgets />
