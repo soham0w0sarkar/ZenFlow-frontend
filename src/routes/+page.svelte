@@ -9,3 +9,7 @@
 
 	onMount(setBackgorund);
 </script>
+
+<svelte:head>
+	<title>ZenFlow</title>
+</svelte:head>
