@@ -6,7 +6,7 @@
 	import Modal from './modal.svelte';
 
 	let showModal = false;
-    let file;
+	let file;
 
 	const handleClick = () => {
 		showModal = true;
@@ -32,7 +32,7 @@
 	<IconPhotoScan size={45} class="-z-10" />
 	<Modal {showModal}>
 		<FileDropzone
-            bind:file={file}
+			bind:file
 			name="files"
 			class="h-full w-full variant-glass-surface text-xl text-white"
 			on:change={(e) => {

@@ -49,7 +49,7 @@
 				id="2"
 				class="flex justify-center p-1 m-2"
 				on:click={(e) => {
-					handleClick(+e.currentTarget.id,  e.currentTarget.title);
+					handleClick(+e.currentTarget.id, e.currentTarget.title);
 				}}
 				title="Calendar"
 			>
@@ -60,7 +60,7 @@
 				id="3"
 				class="flex justify-center p-1 m-2"
 				on:click={(e) => {
-					handleClick(+e.currentTarget.id,  e.currentTarget.title);
+					handleClick(+e.currentTarget.id, e.currentTarget.title);
 				}}
 				title="Timer"
 			>

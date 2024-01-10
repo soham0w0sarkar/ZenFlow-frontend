@@ -10,7 +10,7 @@
 	export let pannelNo;
 	export let selected;
 	export let title;
-	
+
 	let icon;
 	$: {
 		switch (pannelNo) {

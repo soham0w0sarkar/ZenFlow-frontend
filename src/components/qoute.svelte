@@ -4,5 +4,5 @@
 	<p class="text-2xl text-center h-2/3">
 		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla, dolorum.
 	</p>
-    <p class=" text-lg text-center">author</p>
+	<p class=" text-lg text-center">author</p>
 </span>
