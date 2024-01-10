@@ -14,6 +14,7 @@
 
 	const handleFile = (e) => {
 		file = e.target.files[0];
+		showModal = false;
 	};
 
 	onMount(() => {
