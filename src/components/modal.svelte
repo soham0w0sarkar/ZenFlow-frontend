@@ -2,7 +2,9 @@
 	export let showModal;
 
 	let dialog;
-	$: if (showModal == true) dialog.showModal();
+	$: if (dialog && showModal == true) {
+			dialog.showModal();
+		}
 </script>
 
 <dialog

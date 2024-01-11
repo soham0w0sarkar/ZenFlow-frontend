@@ -12,11 +12,6 @@
 		showModal = true;
 	};
 
-	const handleFile = (e) => {
-		file = e.target.files[0];
-		showModal = false;
-	};
-
 	onMount(() => {
 		document.addEventListener('keydown', (e) => {
 			if (e.key === 'Escape') {
@@ -33,12 +28,10 @@
 	<IconPhotoScan size={45} class="-z-10" />
 	<Modal {showModal}>
 		<FileDropzone
-			bind:file
 			name="files"
+			bind:files={file}
 			class="h-full w-full variant-glass-surface text-xl text-white"
-			on:change={(e) => {
-				handleFile(e);
-			}}
+			accept="image/jpeg"
 		>
 			<svelte:fragment slot="lead"><IconFileUpload size={40} /></svelte:fragment>
 			<svelte:fragment slot="message"><b>Upload or Drag</b> file</svelte:fragment>
