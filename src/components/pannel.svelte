@@ -1,4 +1,5 @@
 <script>
+	import GoogleBtn from './googleBtn.svelte';
 	import {
 		IconList,
 		IconCalendar,
@@ -43,6 +44,9 @@
 		<div class="variant-ghost-surface h-8 flex p-1">
 			<span><svelte:component this={icon} /></span>
 			<span class="font-bold ml-1">{title}</span>
+		</div>
+		<div class="variant-ghost-surface h-full flex justify-center items-center">
+			<GoogleBtn />
 		</div>
 	</div>
 {/if}
