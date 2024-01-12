@@ -1,10 +1,10 @@
 <script>
 	import { onMount } from 'svelte';
-	import bgImage from '../bg.jpg';
+	import bgImage from '../assests/img/bg.jpg';
 
 	const setBackgorund = () => {
 		document.body.style.backgroundImage = `url(${bgImage})`;
-		console.log('background set');
+		document.body.style.backgroundSize = 'cover';
 	};
 
 	onMount(setBackgorund);
