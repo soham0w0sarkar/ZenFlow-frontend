@@ -15,7 +15,6 @@
 
 	let icon;
 	$: {
-		console.log(isAuthenticated)
 		switch (pannelNo) {
 			case 1:
 				icon = IconList;
