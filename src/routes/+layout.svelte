@@ -6,6 +6,8 @@
 	import Qoute from '../components/qoute.svelte';
 	import Widgets from '../components/widgets.svelte';
 	import BackgroundUp from '../components/backgroundUp.svelte';
+	import {isAuthenticated} from '../lib/store.js';
+
 
 	let selected = true;
 	let pannelNo = 1;
@@ -25,7 +27,7 @@
 >
 	<svelte:fragment slot="sidebarLeft">
 		<SideBar {selected} {pannelNo} on:clicked={(e) => handleClick(e.detail)} />
-		<Pannel {title} {pannelNo} {selected} />
+		<Pannel {title} {pannelNo} {selected} isAuthenticated={ $isAuthenticated } />
 	</svelte:fragment>
 	<svelte:fragment slot="pageHeader">
 		<Widgets />

@@ -11,9 +11,11 @@
 	export let pannelNo;
 	export let selected;
 	export let title;
+	export let isAuthenticated;
 
 	let icon;
 	$: {
+		console.log(isAuthenticated)
 		switch (pannelNo) {
 			case 1:
 				icon = IconList;
@@ -46,7 +48,11 @@
 			<span class="font-bold ml-1">{title}</span>
 		</div>
 		<div class="variant-ghost-surface h-full flex justify-center items-center">
-			<GoogleBtn />
+			{#if isAuthenticated === false}
+				<GoogleBtn />
+			{:else if isAuthenticated === true}
+				<p class="text-2xl">You are logged in</p>
+			{/if}
 		</div>
 	</div>
 {/if}
