@@ -12,11 +12,25 @@
 		showModal = true;
 	};
 
+	const handleDrop = () => {
+		const formData = new FormData();
+		formData.append('file', file[0]);
+		console.log(file[0]);
+		try {
+			const res = fetch('http://localhost:9090/api/v1/background/setBackground', {
+				method: 'POST',
+				body: formData,
+			});
+			console.log('Uploaded......');
+			showModal = false;
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	onMount(() => {
 		document.addEventListener('keydown', (e) => {
-			if (e.key === 'Escape') {
 				showModal = false;
-			}
 		});
 	});
 </script>
@@ -31,6 +45,7 @@
 			name="files"
 			bind:files={file}
 			class="h-full w-full variant-glass-surface text-xl text-white"
+			on:change={handleDrop}
 			accept="image/jpeg"
 		>
 			<svelte:fragment slot="lead"><IconFileUpload size={40} /></svelte:fragment>
