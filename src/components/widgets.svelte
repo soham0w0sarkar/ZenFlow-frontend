@@ -21,32 +21,32 @@
 	};
 
 	const getLocation = () => {
-    return new Promise((resolve, reject) => {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(async (position) => {
-                const { latitude, longitude } = position.coords;
-                const res = await fetch(
-                    `http://localhost:9090/api/v1/widgets/weather/${latitude}/${longitude}`
-                );
-                if (!res.ok) {
-                    reject(`HTTP error! status: ${res.status}`);
-                }
-                const weatherData = await res.json();
+		return new Promise((resolve, reject) => {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(async (position) => {
+					const { latitude, longitude } = position.coords;
+					const res = await fetch(
+						`http://localhost:9090/api/v1/widgets/weather/${latitude}/${longitude}`
+					);
+					if (!res.ok) {
+						reject(`HTTP error! status: ${res.status}`);
+					}
+					const weatherData = await res.json();
 
-                if (!weatherData.data || !weatherData.data.weather) {
-                    reject('Unexpected API response');
-                }
+					if (!weatherData.data || !weatherData.data.weather) {
+						reject('Unexpected API response');
+					}
 
-                const temp = Math.round(weatherData.data.weather.main.temp - 273);
-                const city = cityFormat(weatherData.data.weather.name);
+					const temp = Math.round(weatherData.data.weather.main.temp - 273);
+					const city = cityFormat(weatherData.data.weather.name);
 
-                resolve({temp, city});
-            });
-        } else {
-            reject('Geolocation is not supported by this browser.');
-        }
-    });
-};
+					resolve({ temp, city });
+				});
+			} else {
+				reject('Geolocation is not supported by this browser.');
+			}
+		});
+	};
 
 	const getTimeAndDate = () => {
 		const date = new Date();
@@ -66,11 +66,12 @@
 	};
 
 	let { time, displayDate } = getTimeAndDate();
-	let  temp = "", city = "";
+	let temp = '',
+		city = '';
 
 	onMount(async () => {
 		const interval = (60 - new Date().getSeconds()) * 1000;
-		let {temp: newTemp, city: newCity} = await getLocation();
+		let { temp: newTemp, city: newCity } = await getLocation();
 		temp = newTemp;
 		city = newCity;
 

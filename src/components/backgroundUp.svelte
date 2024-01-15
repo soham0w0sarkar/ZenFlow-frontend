@@ -19,7 +19,7 @@
 		try {
 			const res = fetch('http://localhost:9090/api/v1/background/setBackground', {
 				method: 'POST',
-				body: formData,
+				body: formData
 			});
 			console.log('Uploaded......');
 			showModal = false;
@@ -30,7 +30,7 @@
 
 	onMount(() => {
 		document.addEventListener('keydown', (e) => {
-				showModal = false;
+			showModal = false;
 		});
 	});
 </script>

@@ -1,18 +1,18 @@
 <script>
-	import { onMount } from "svelte";
+	import { onMount } from 'svelte';
 
-	let joke = "";
+	let joke = '';
 
 	const getJoke = async () => {
 		try {
-			const res = await fetch("http://localhost:9090/api/v1/widgets/jokes");
+			const res = await fetch('http://localhost:9090/api/v1/widgets/jokes');
 			const data = await res.json();
 
 			joke = data.joke;
 		} catch (error) {
 			console.log(error);
 		}
-	}
+	};
 
 	onMount(async () => {
 		await getJoke();
