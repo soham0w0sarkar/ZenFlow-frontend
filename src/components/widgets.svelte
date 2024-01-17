@@ -17,7 +17,7 @@
 			}
 			return word[0].toUpperCase() + word.slice(1);
 		});
-		return value.join(' ');
+		return value.join('').slice(0, 2) + ' ' + value.join('').slice(2);
 	};
 
 	const getLocation = () => {
@@ -83,7 +83,7 @@
 </script>
 
 <div class="variant-glass-surface flex justify-between items-center rounded-md h-1/2 w-60 p-2">
-	<div class="h-full p-2 w-5/12 rounded-md hover:variant-glass-surface">
+	<div class="h-full p-2 w-fit rounded-md hover:variant-glass-surface">
 		<div class="w-full h-2/3 flex justify-evenly text-xl font-bold">
 			<IconSun size={30} />{temp}&degC
 		</div>
