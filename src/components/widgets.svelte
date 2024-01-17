@@ -2,6 +2,8 @@
 	import { onMount } from 'svelte';
 	import { IconSun } from '@tabler/icons-svelte';
 
+	let icon = "http://openweathermap.org/img/w/01d.png";
+
 	const timeFormat = (value) => {
 		if (value < 10) {
 			return `0${value}`;
@@ -32,6 +34,8 @@
 						reject(`HTTP error! status: ${res.status}`);
 					}
 					const weatherData = await res.json();
+
+					icon = `http://openweathermap.org/img/w/${weatherData.data.weather.weather[0].icon}.png`;
 
 					if (!weatherData.data || !weatherData.data.weather) {
 						reject('Unexpected API response');
@@ -70,22 +74,28 @@
 		city = '';
 
 	onMount(async () => {
-		const interval = (60 - new Date().getSeconds()) * 1000;
+		let interval = (60 - new Date().getSeconds()) * 1000;
 		let { temp: newTemp, city: newCity } = await getLocation();
 		temp = newTemp;
 		city = newCity;
 
-		setInterval(() => {
-			const { time: newTime } = getTimeAndDate();
-			time = newTime;
+		setTimeout(async () => {
+			const { temp: newTemp, city: newCity } = await getLocation();
+			temp = newTemp;
+			city = newCity;
+
+			setInterval(() => {
+				const { time: newTime } = getTimeAndDate();
+				time = newTime;
+			}, 60 * 1000);
 		}, interval);
 	});
 </script>
 
 <div class="variant-glass-surface flex justify-between items-center rounded-md h-1/2 w-60 p-2">
 	<div class="h-full p-2 w-fit rounded-md hover:variant-glass-surface">
-		<div class="w-full h-2/3 flex justify-evenly text-xl font-bold">
-			<IconSun size={30} />{temp}&degC
+		<div class="w-full h-2/3 flex items-center justify-evenly text-xl font-bold">
+			<img src="{icon}" alt="icon">{temp}&degC
 		</div>
 		<div class="w-full h-1/3 flex justify-center">{city}</div>
 	</div>
