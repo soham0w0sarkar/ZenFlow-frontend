@@ -29,9 +29,9 @@
 
 <div class="parent">
 	<div
-		class={`h-full w-14 rounded flex flex-col justify-between variant-${
+		class={`h-full w-14 flex flex-col justify-between variant-${
 			selected == true ? 'ghost' : 'glass'
-		}-surface`}
+		}-surface ${selected == true ? 'rounded-l-md' : 'rounded-md'} `}
 	>
 		<div class="flex flex-col gap-2">
 			<button
