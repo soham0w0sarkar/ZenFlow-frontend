@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { IconSun } from '@tabler/icons-svelte';
 
-	let icon = "http://openweathermap.org/img/w/01d.png";
+	let icon = 'http://openweathermap.org/img/w/01d.png';
 
 	const timeFormat = (value) => {
 		if (value < 10) {
@@ -95,7 +95,7 @@
 <div class="variant-glass-surface flex justify-between items-center rounded-md h-1/2 w-60 p-2">
 	<div class="h-full p-2 w-fit rounded-md hover:variant-glass-surface">
 		<div class="w-full h-2/3 flex items-center justify-evenly text-xl font-bold">
-			<img src="{icon}" alt="icon">{temp}&degC
+			<img src={icon} alt="icon" />{temp}&degC
 		</div>
 		<div class="w-full h-1/3 flex justify-center">{city}</div>
 	</div>

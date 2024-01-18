@@ -1,6 +1,6 @@
 <script>
 	const handleClick = () => {
-		window.location.href = "http://localhost:9090/api/v1/auth/googleLogin";
+		window.location.href = 'http://localhost:9090/api/v1/auth/googleLogin';
 	};
 </script>
 
