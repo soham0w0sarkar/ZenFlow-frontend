@@ -22,7 +22,6 @@
 				body: formData
 			});
 			console.log('Uploaded......');
-			showModal = false;
 		} catch (error) {
 			console.log(error);
 		}
