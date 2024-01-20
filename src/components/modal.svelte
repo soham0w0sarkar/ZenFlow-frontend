@@ -16,7 +16,6 @@
 	const handleDrop = () => {
 		const formData = new FormData();
 		formData.append('file', file[0]);
-		console.log(file[0]);
 		try {
 			const res = fetch('http://localhost:9090/api/v1/background/setBackground', {
 				method: 'POST',
@@ -31,27 +30,35 @@
 
 <dialog
 	bind:this={dialog}
-	on:close={(e)=>{ showModal = false }}
-	class="variant-ghost-surface flex p-2 justify-center items-center rounded-md h-1/4 w-1/4 {showModal
-		? 'block'
-		: 'hidden'}"
+	on:close={(e) => {
+		showModal = false;
+	}}
+	class="variant-ghost-surface flex p-2 justify-center items-center rounded-md h-1/4 w-1/4 {showModal ? 'block' : 'hidden'}"
 >
 	<button
-		class="absolute top-2 right-2 z-10"
+		class="absolute top-3 right-3 z-10"
 		on:click={() => {
 			showModal = false;
-		}}>
-		<IconX size={20} />
-	</button>
-	<FileDropzone
-		name="files"
-		bind:files={file}
-		class="h-full w-full variant-glass-surface text-xl text-white"
-		on:change={handleDrop}
-		accept="image/jpeg"
+		}}
 	>
-		<svelte:fragment slot="lead"><IconFileUpload size={40} /></svelte:fragment>
-		<svelte:fragment slot="message"><b>Upload or Drag</b> file</svelte:fragment>
-		<svelte:fragment slot="meta"><b>Jpg</b> allowed</svelte:fragment>
-	</FileDropzone>
+		<IconX size={20} stroke={3} color="white" />
+	</button>
+	<FileDropzone name="files" bind:files={file} class="h-full w-full variant-glass-surface text-xl text-white" on:change={handleDrop} accept="image/jpeg" />
 </dialog>
+
+<style>
+	dialog {
+		animation: apperance 0.3s ease;
+	}
+	dialog::backdrop {
+		background-color: rgba(0, 0, 0, 0.5);
+	}
+	@keyframes apperance {
+		0% {
+			transform: scale(0);
+		}
+		100% {
+			transform: scale(1);
+		}
+	}
+</style>
