@@ -1,13 +1,6 @@
 <script>
 	import GoogleBtn from './googleBtn.svelte';
-	import {
-		IconList,
-		IconCalendar,
-		IconHourglassHigh,
-		IconDeviceAnalytics,
-		IconSettings,
-		IconUser
-	} from '@tabler/icons-svelte';
+	import { IconList, IconCalendar, IconHourglassHigh, IconDeviceAnalytics, IconSettings, IconUser } from '@tabler/icons-svelte';
 	export let pannelNo;
 	export let selected;
 	export let title;

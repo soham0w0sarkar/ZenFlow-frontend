@@ -19,11 +19,7 @@
 	};
 </script>
 
-<AppShell
-	slotSidebarLeft="p-4 flex w-fit"
-	slotPageFooter="static h-1/4 p-4"
-	slotPageHeader="h-1/5 p-4 flex justify-end"
->
+<AppShell slotSidebarLeft="p-4 flex w-fit" slotPageFooter="static h-1/4 p-4" slotPageHeader="h-1/5 p-4 flex justify-end">
 	<svelte:fragment slot="sidebarLeft">
 		<SideBar {selected} {pannelNo} on:clicked={(e) => handleClick(e.detail)} />
 		<Pannel {title} {pannelNo} {selected} isAuthenticated={$isAuthenticated} />

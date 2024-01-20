@@ -17,22 +17,11 @@
 		});
 	};
 
-	import {
-		IconList,
-		IconCalendar,
-		IconHourglassHigh,
-		IconDeviceAnalytics,
-		IconSettings,
-		IconUser
-	} from '@tabler/icons-svelte';
+	import { IconList, IconCalendar, IconHourglassHigh, IconDeviceAnalytics, IconSettings, IconUser } from '@tabler/icons-svelte';
 </script>
 
 <div class="parent">
-	<div
-		class={`h-full w-14 flex flex-col justify-between variant-${
-			selected == true ? 'ghost' : 'glass'
-		}-surface ${selected == true ? 'rounded-l-md' : 'rounded-md'} `}
-	>
+	<div class={`h-full w-14 flex flex-col justify-between variant-${selected == true ? 'ghost' : 'glass'}-surface ${selected == true ? 'rounded-l-md' : 'rounded-md'} `}>
 		<div class="flex flex-col gap-2">
 			<button
 				id="1"

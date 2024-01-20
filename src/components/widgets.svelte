@@ -27,9 +27,7 @@
 			if (navigator.geolocation) {
 				navigator.geolocation.getCurrentPosition(async (position) => {
 					const { latitude, longitude } = position.coords;
-					const res = await fetch(
-						`http://localhost:9090/api/v1/widgets/weather/${latitude}/${longitude}`
-					);
+					const res = await fetch(`http://localhost:9090/api/v1/widgets/weather/${latitude}/${longitude}`);
 					if (!res.ok) {
 						reject(`HTTP error! status: ${res.status}`);
 					}
