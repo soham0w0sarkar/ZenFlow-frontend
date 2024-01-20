@@ -1,12 +1,12 @@
 <script>
-	import { onMount } from 'svelte';
 	import { IconPhotoScan } from '@tabler/icons-svelte';
 	import Modal from './modal.svelte';
 
-	let showModal = false;
+	let showModal;
 
 	const handleClick = () => {
 		showModal = true;
+		console.log(showModal);
 	};
 </script>
 
@@ -16,4 +16,4 @@
 >
 	<IconPhotoScan size={45} class="-z-10" />
 </button>
-<Modal {showModal} />
+<Modal bind:showModal />

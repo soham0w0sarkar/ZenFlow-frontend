@@ -7,8 +7,10 @@
 	let dialog;
 	let file;
 
-	$: if (dialog && showModal == true) {
+	$: if (dialog && showModal) {
 		dialog.showModal();
+	} else if (dialog && !showModal) {
+		dialog.close();
 	}
 
 	const handleDrop = () => {
@@ -29,17 +31,18 @@
 
 <dialog
 	bind:this={dialog}
+	on:close={(e)=>{ showModal = false }}
 	class="variant-ghost-surface flex p-2 justify-center items-center rounded-md h-1/4 w-1/4 {showModal
 		? 'block'
 		: 'hidden'}"
 >
 	<button
-		class="absolute top-2 right-2 variant-filled-primary"
+		class="absolute top-2 right-2 z-10"
 		on:click={() => {
-			dialog.close();
 			showModal = false;
-		}}><IconX size={15} /></button
-	>
+		}}>
+		<IconX size={20} />
+	</button>
 	<FileDropzone
 		name="files"
 		bind:files={file}
