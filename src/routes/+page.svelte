@@ -1,13 +1,22 @@
 <script>
 	import { onMount } from 'svelte';
-	import bgImage from '../assests/img/bg.jpg';
+	import { backgroundUrl } from "../lib/store.js"
 
-	const setBackgorund = () => {
-		document.body.style.backgroundImage = `url(${bgImage})`;
+	let isMounted = false;
+
+ 	const setBackgorund = () => {
+		document.body.style.backgroundImage = `url(${$backgroundUrl})`;
 		document.body.style.backgroundSize = 'cover';
 	};
 
-	onMount(setBackgorund);
+	$: if(isMounted && $backgroundUrl) {
+		setBackgorund();
+	}
+
+	onMount(()=>{
+		isMounted = true;
+		setBackgorund();
+	});
 </script>
 
 <svelte:head>

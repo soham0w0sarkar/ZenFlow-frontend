@@ -1,12 +1,15 @@
 <script>
 	import GoogleBtn from './googleBtn.svelte';
 	import { IconList, IconCalendar, IconHourglassHigh, IconDeviceAnalytics, IconSettings, IconUser } from '@tabler/icons-svelte';
+	import Setting from './pannels/setting.svelte';
+
 	export let pannelNo;
 	export let selected;
 	export let title;
 	export let isAuthenticated;
 
 	let icon;
+	let pannel;
 	$: {
 		switch (pannelNo) {
 			case 1:
@@ -23,6 +26,7 @@
 				break;
 			case 5:
 				icon = IconSettings;
+				pannel = Setting;
 				break;
 			case 6:
 				icon = IconUser;
@@ -43,7 +47,7 @@
 			{#if isAuthenticated === false}
 				<GoogleBtn />
 			{:else if isAuthenticated === true}
-				<p class="text-2xl">You are logged in</p>
+				<svelte:component this={pannel} />
 			{/if}
 		</div>
 	</div>

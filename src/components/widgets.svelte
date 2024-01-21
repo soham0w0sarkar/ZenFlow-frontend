@@ -1,6 +1,5 @@
 <script>
 	import { onMount } from 'svelte';
-	import { IconSun } from '@tabler/icons-svelte';
 
 	let icon = 'http://openweathermap.org/img/w/01d.png';
 

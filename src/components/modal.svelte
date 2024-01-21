@@ -1,5 +1,6 @@
 <script>
 	import { FileDropzone } from '@skeletonlabs/skeleton';
+	import {backgroundUrl} from '../lib/store.js';
 	import { IconFileUpload, IconX } from '@tabler/icons-svelte';
 
 	export let showModal;
@@ -13,15 +14,19 @@
 		dialog.close();
 	}
 
-	const handleDrop = () => {
+	const handleDrop = async() => {
 		const formData = new FormData();
 		formData.append('file', file[0]);
 		try {
-			const res = fetch('http://localhost:9090/api/v1/background/setBackground', {
+			const res = await fetch('http://localhost:9090/api/v1/background/setBackground', {
 				method: 'POST',
 				body: formData
 			});
 			console.log('Uploaded......');
+			const data = await res.json();
+
+			$backgroundUrl = data.url;
+
 		} catch (error) {
 			console.log(error);
 		}
