@@ -6,7 +6,6 @@
 
 	const handleClick = () => {
 		showModal = true;
-		console.log(showModal);
 	};
 </script>
 

@@ -1,6 +1,6 @@
 <script>
 	import { FileDropzone } from '@skeletonlabs/skeleton';
-	import {backgroundUrl} from '../lib/store.js';
+	import { backgroundUrl, backgroundUrls } from '../lib/store.js';
 	import { IconFileUpload, IconX } from '@tabler/icons-svelte';
 	const VITE_API_URL = import.meta.env.VITE_API_URL;
 
@@ -15,7 +15,7 @@
 		dialog.close();
 	}
 
-	const handleDrop = async() => {
+	const handleDrop = async () => {
 		const formData = new FormData();
 		formData.append('file', file[0]);
 		try {
@@ -23,11 +23,13 @@
 				method: 'POST',
 				body: formData
 			});
-			console.log('Uploaded......');
+
 			const data = await res.json();
 
-			$backgroundUrl = data.url;
-
+			if (data.success) {
+				$backgroundUrls = [...$backgroundUrls, data.url];
+				$backgroundUrl = data.url;
+			}
 		} catch (error) {
 			console.log(error);
 		}
