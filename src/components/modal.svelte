@@ -2,6 +2,7 @@
 	import { FileDropzone } from '@skeletonlabs/skeleton';
 	import {backgroundUrl} from '../lib/store.js';
 	import { IconFileUpload, IconX } from '@tabler/icons-svelte';
+	const VITE_API_URL = import.meta.env.VITE_API_URL;
 
 	export let showModal;
 
@@ -18,7 +19,7 @@
 		const formData = new FormData();
 		formData.append('file', file[0]);
 		try {
-			const res = await fetch('http://localhost:9090/api/v1/background/setBackground', {
+			const res = await fetch(`${VITE_API_URL}/background/setBackground`, {
 				method: 'POST',
 				body: formData
 			});

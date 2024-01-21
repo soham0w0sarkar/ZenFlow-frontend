@@ -1,12 +1,13 @@
 <script>
 	import { onMount } from 'svelte';
 	import { IconBrandTwitter } from '@tabler/icons-svelte';
+	const VITE_API_URL = import.meta.env.VITE_API_URL;
 
 	let joke = '';
 
 	const getJoke = async () => {
 		try {
-			const res = await fetch('http://localhost:9090/api/v1/widgets/jokes');
+			const res = await fetch(`${VITE_API_URL}/widgets/jokes`);
 			const data = await res.json();
 
 			joke = data.joke;

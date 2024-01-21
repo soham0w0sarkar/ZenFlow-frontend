@@ -1,5 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
+	const VITE_API_URL = import.meta.env.VITE_API_URL;
 
 	let icon = 'http://openweathermap.org/img/w/01d.png';
 
@@ -26,7 +27,7 @@
 			if (navigator.geolocation) {
 				navigator.geolocation.getCurrentPosition(async (position) => {
 					const { latitude, longitude } = position.coords;
-					const res = await fetch(`http://localhost:9090/api/v1/widgets/weather/${latitude}/${longitude}`);
+					const res = await fetch(`${VITE_API_URL}/widgets/weather/${latitude}/${longitude}`);
 					if (!res.ok) {
 						reject(`HTTP error! status: ${res.status}`);
 					}
