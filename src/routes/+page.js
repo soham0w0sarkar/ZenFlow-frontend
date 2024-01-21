@@ -1,4 +1,4 @@
-import { isAuthenticated, backgroundUrl } from '../lib/store.js';
+import { isAuthenticated, backgroundUrls, backgroundUrl } from '../lib/store.js';
 const VITE_API_URL = import.meta.env.VITE_API_URL;
 
 export async function load({ fetch }) {
@@ -8,7 +8,7 @@ export async function load({ fetch }) {
 	const backgroundRes = await fetch(`${VITE_API_URL}/background/getBackground`);
 	const backgroundData = await backgroundRes.json();
 
-	backgroundUrl.set(backgroundData?.background?.url);
-
+	backgroundUrls.set(backgroundData?.backgroundsUrl);
+	backgroundUrl.set(backgroundUrls[0]);
 	isAuthenticated.set(data.success);
 }
