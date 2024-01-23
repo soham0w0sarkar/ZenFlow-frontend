@@ -1,4 +1,4 @@
-import { isAuthenticated, backgroundUrls, backgroundUrl, joke } from '../lib/store.js';
+import { isAuthenticated, backgrounds, backgroundUrl, joke } from '../lib/store.js';
 const VITE_API_URL = import.meta.env.VITE_API_URL;
 
 export async function load({ fetch }) {
@@ -13,6 +13,6 @@ export async function load({ fetch }) {
 
 	joke.set(jokeData.joke);
 	isAuthenticated.set(data.success);
-	backgroundUrls.set(backgroundData?.backgroundsUrl);
-	backgroundUrl.set(backgroundUrls[0]);
+	backgrounds.set(backgroundData?.backgrounds);
+	backgroundUrl.set(backgroundData?.backgrounds[0]?.url);
 }

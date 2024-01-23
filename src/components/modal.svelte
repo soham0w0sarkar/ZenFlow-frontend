@@ -1,6 +1,6 @@
 <script>
 	import { FileDropzone } from '@skeletonlabs/skeleton';
-	import { backgroundUrl, backgroundUrls } from '../lib/store.js';
+	import { backgroundUrl, backgrounds } from '../lib/store.js';
 	import { IconX } from '@tabler/icons-svelte';
 	const VITE_API_URL = import.meta.env.VITE_API_URL;
 
@@ -27,7 +27,7 @@
 			const data = await res.json();
 
 			if (data.success) {
-				$backgroundUrls = [...$backgroundUrls, data.url];
+				$backgrounds = [{ id: data.id, url: data.url }, ...$backgrounds];
 				$backgroundUrl = data.url;
 			}
 		} catch (error) {
