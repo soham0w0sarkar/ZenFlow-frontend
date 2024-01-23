@@ -7,11 +7,13 @@
 	const setBackgorund = () => {
 		if ($backgroundUrl) {
 			document.body.style.backgroundImage = `url(${$backgroundUrl})`;
+		} else if ($backgroundUrl === '') {
+			document.body.style.backgroundImage = 'none';
 		}
 		document.body.style.backgroundSize = 'cover';
 	};
 
-	$: if (isMounted && $backgroundUrl) {
+	$: if (isMounted && ($backgroundUrl || $backgroundUrl === '')) {
 		setBackgorund();
 	}
 
