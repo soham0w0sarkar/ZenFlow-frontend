@@ -80,7 +80,7 @@
 
 	onMount(async () => {
 		let interval = (60 - new Date().getSeconds()) * 1000;
-		let {icon:newIcon, temp: newTemp, city: newCity } = await getLocation();
+		let { icon: newIcon, temp: newTemp, city: newCity } = await getLocation();
 		temp = newTemp;
 		city = newCity;
 		icon = getIcon(newIcon);

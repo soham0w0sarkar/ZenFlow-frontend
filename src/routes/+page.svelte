@@ -5,7 +5,7 @@
 	let isMounted = false;
 
 	const setBackgorund = () => {
-		if($backgroundUrl) {
+		if ($backgroundUrl) {
 			document.body.style.backgroundImage = `url(${$backgroundUrl})`;
 		}
 		document.body.style.backgroundSize = 'cover';

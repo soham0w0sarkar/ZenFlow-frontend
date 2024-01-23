@@ -1,7 +1,7 @@
 <script>
 	import { FileDropzone } from '@skeletonlabs/skeleton';
 	import { backgroundUrl, backgroundUrls } from '../lib/store.js';
-	import { IconFileUpload, IconX } from '@tabler/icons-svelte';
+	import { IconX } from '@tabler/icons-svelte';
 	const VITE_API_URL = import.meta.env.VITE_API_URL;
 
 	export let showModal;

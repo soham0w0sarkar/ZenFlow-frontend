@@ -49,7 +49,7 @@
 		<div class="variant-ghost-surface h-8 flex p-1">
 			<span><svelte:component this={icon} /></span>
 			<span class="font-bold ml-1">{title}</span>
-			<span class="ml-auto mr-1"><Logout/></span>
+			<span class="ml-auto mr-1"><Logout /></span>
 		</div>
 		<div class="variant-ghost-surface h-full flex justify-center items-center">
 			{#if isAuthenticated === false}
