@@ -1,4 +1,5 @@
 <script>
+	import Logout from './logout.svelte';
 	import GoogleBtn from './googleBtn.svelte';
 	import { IconList, IconCalendar, IconHourglassHigh, IconDeviceAnalytics, IconSettings, IconUser } from '@tabler/icons-svelte';
 	import Setting from './pannels/setting.svelte';
@@ -14,15 +15,19 @@
 		switch (pannelNo) {
 			case 1:
 				icon = IconList;
+				pannel = '';
 				break;
 			case 2:
 				icon = IconCalendar;
+				pannel = '';
 				break;
 			case 3:
 				icon = IconHourglassHigh;
+				pannel = '';
 				break;
 			case 4:
 				icon = IconDeviceAnalytics;
+				pannel = '';
 				break;
 			case 5:
 				icon = IconSettings;
@@ -30,9 +35,11 @@
 				break;
 			case 6:
 				icon = IconUser;
+				pannel = '';
 				break;
 			default:
 				icon = IconList;
+				pannel = '';
 		}
 	}
 </script>
@@ -42,6 +49,7 @@
 		<div class="variant-ghost-surface h-8 flex p-1">
 			<span><svelte:component this={icon} /></span>
 			<span class="font-bold ml-1">{title}</span>
+			<span class="ml-auto mr-1"><Logout/></span>
 		</div>
 		<div class="variant-ghost-surface h-full flex justify-center items-center">
 			{#if isAuthenticated === false}
