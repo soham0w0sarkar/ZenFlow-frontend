@@ -1,8 +1,7 @@
 <script>
+	import { IconCloud, IconCloudFilled, IconCloudRain, IconCloudStorm, IconMist, IconSnowflake, IconSun } from '@tabler/icons-svelte';
 	import { onMount } from 'svelte';
 	const VITE_API_URL = import.meta.env.VITE_API_URL;
-
-	let icon = 'http://openweathermap.org/img/w/01d.png';
 
 	const timeFormat = (value) => {
 		if (value < 10) {
@@ -11,15 +10,25 @@
 		return value;
 	};
 
-	const cityFormat = (value) => {
-		value = value.split(' ');
-		value = value.map((word, indx) => {
-			if (indx !== value.length - 1) {
-				return word[0].toUpperCase();
-			}
-			return word[0].toUpperCase() + word.slice(1);
-		});
-		return value.join('').slice(0, 2) + ' ' + value.join('').slice(2);
+	const getIcon = (icon) => {
+		switch (icon) {
+			case '01d' || '01n':
+				return IconSun;
+			case '02d' || '02n':
+				return IconCloud;
+			case '03d' || '03n' || '04d' || '04n':
+				return IconCloudFilled;
+			case '09d' || '09n' || '10d' || '10n':
+				return IconCloudRain;
+			case '11d' || '11n':
+				return IconCloudStorm;
+			case '13d' || '13n':
+				return IconSnowflake;
+			case '50d' || '50n':
+				return IconMist;
+			default:
+				return IconSun;
+		}
 	};
 
 	const getLocation = () => {
@@ -33,16 +42,13 @@
 					}
 					const weatherData = await res.json();
 
-					icon = `http://openweathermap.org/img/w/${weatherData.data.weather.weather[0].icon}.png`;
-
-					if (!weatherData.data || !weatherData.data.weather) {
+					if (weatherData.success) {
 						reject('Unexpected API response');
 					}
 
-					const temp = Math.round(weatherData.data.weather.main.temp - 273);
-					const city = cityFormat(weatherData.data.weather.name);
+					const { icon, temp, city } = weatherData.data;
 
-					resolve({ temp, city });
+					resolve({ icon, temp, city });
 				});
 			} else {
 				reject('Geolocation is not supported by this browser.');
@@ -69,13 +75,15 @@
 
 	let { time, displayDate } = getTimeAndDate();
 	let temp = '',
-		city = '';
+		city = '',
+		icon = IconSun;
 
 	onMount(async () => {
 		let interval = (60 - new Date().getSeconds()) * 1000;
-		let { temp: newTemp, city: newCity } = await getLocation();
+		let {icon:newIcon, temp: newTemp, city: newCity } = await getLocation();
 		temp = newTemp;
 		city = newCity;
+		icon = getIcon(newIcon);
 
 		setTimeout(async () => {
 			const { temp: newTemp, city: newCity } = await getLocation();
@@ -93,7 +101,8 @@
 <div class="variant-glass-surface flex justify-between items-center rounded-md h-1/2 w-60 p-2">
 	<div class="h-full p-2 w-fit rounded-md hover:variant-glass-surface">
 		<div class="w-full h-2/3 flex items-center justify-evenly text-xl font-bold">
-			<img src={icon} alt="icon" />{temp}&degC
+			<span><svelte:component this={icon} /></span>
+			<span>{temp}°C</span>
 		</div>
 		<div class="w-full h-1/3 flex justify-center">{city}</div>
 	</div>
