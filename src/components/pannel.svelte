@@ -1,4 +1,5 @@
 <script>
+	import Timer from './pannels/timer.svelte';
 	import Logout from './logout.svelte';
 	import GoogleBtn from './googleBtn.svelte';
 	import { IconList, IconCalendar, IconHourglassHigh, IconDeviceAnalytics, IconSettings, IconUser } from '@tabler/icons-svelte';
@@ -23,7 +24,7 @@
 				break;
 			case 3:
 				icon = IconHourglassHigh;
-				pannel = '';
+				pannel = Timer;
 				break;
 			case 4:
 				icon = IconDeviceAnalytics;
