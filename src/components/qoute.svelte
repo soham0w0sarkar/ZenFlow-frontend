@@ -4,7 +4,7 @@
 </script>
 
 <span class="variant-glass-surface h-fit w-1/4 rounded-md p-5 left-2/4 bottom-4 absolute -translate-x-1/2 hover">
-	<button class="variant-glass-surface block absolute top-1/2 -translate-y-1/2 w-fit h-fit p-2 rounded-full hover-circle">
+	<button aria-label="tweet" class="variant-glass-surface block absolute top-1/2 -translate-y-1/2 w-fit h-fit p-2 rounded-full hover-circle">
 		<IconBrandTwitter />
 	</button>
 	<p class="text-2xl text-center h-2/3">{$joke}</p>

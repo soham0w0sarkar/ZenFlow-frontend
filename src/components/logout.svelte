@@ -19,5 +19,5 @@
 </script>
 
 {#if $isAuthenticated === true}
-	<button on:click={logout}><IconPower /></button>
+	<button aria-label="logout" on:click={logout}><IconPower /></button>
 {/if}

@@ -44,6 +44,7 @@
 	class="variant-ghost-surface flex p-2 justify-center items-center rounded-md h-1/4 w-1/4 {showModal ? 'block' : 'hidden'}"
 >
 	<button
+		aria-label="close-modal"
 		class="absolute top-3 right-3 z-10"
 		on:click={() => {
 			showModal = false;

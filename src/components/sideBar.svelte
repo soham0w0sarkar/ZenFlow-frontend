@@ -24,6 +24,7 @@
 	<div class={`h-full w-14 flex flex-col justify-between variant-${selected == true ? 'ghost' : 'glass'}-surface ${selected == true ? 'rounded-l-md' : 'rounded-md'} `}>
 		<div class="flex flex-col gap-2">
 			<button
+				aria-label="sidebar-icon"
 				id="1"
 				class="flex justify-center p-1 mt-2"
 				on:click={(e) => {
@@ -35,6 +36,7 @@
 			</button>
 
 			<button
+				aria-label="sidebar-icon"
 				id="2"
 				class="flex justify-center p-1 m-2"
 				on:click={(e) => {
@@ -46,6 +48,7 @@
 			</button>
 
 			<button
+				aria-label="sidebar-icon"
 				id="3"
 				class="flex justify-center p-1 m-2"
 				on:click={(e) => {
@@ -57,6 +60,7 @@
 			</button>
 
 			<button
+				aria-label="sidebar-icon"
 				id="4"
 				class="flex justify-center p-1 m-2"
 				on:click={(e) => {
@@ -69,6 +73,7 @@
 		</div>
 		<div class="flex flex-col">
 			<button
+				aria-label="sidebar-icon"
 				id="5"
 				class="flex justify-center p-2 m-1"
 				on:click={(e) => {
@@ -80,6 +85,7 @@
 			</button>
 
 			<button
+				aria-label="sidebar-icon"
 				id="6"
 				class="flex justify-center p-2 m-1"
 				on:click={(e) => {
