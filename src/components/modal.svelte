@@ -21,7 +21,8 @@
 		try {
 			const res = await fetch(`${VITE_API_URL}/background/setBackground`, {
 				method: 'POST',
-				body: formData
+				body: formData,
+				credentials: 'include',
 			});
 
 			const data = await res.json();

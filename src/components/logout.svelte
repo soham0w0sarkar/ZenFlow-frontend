@@ -6,7 +6,10 @@
 	const logout = async () => {
 		try {
 			console.log('clicked');
-			const res = await fetch(`${VITE_API_URL}/auth/logout`);
+			const res = await fetch(`${VITE_API_URL}/auth/logout`, {
+				method: 'GET',
+				credentials: 'include',
+			});
 			const data = await res.json();
 
 			if (data.success) {

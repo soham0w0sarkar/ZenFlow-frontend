@@ -36,10 +36,16 @@
 			if (navigator.geolocation) {
 				navigator.geolocation.getCurrentPosition(async (position) => {
 					const { latitude, longitude } = position.coords;
-					const res = await fetch(`${VITE_API_URL}/widgets/weather/${latitude}/${longitude}`);
+					
+					const res = await fetch(`${VITE_API_URL}/widgets/weather/${latitude}/${longitude}`, {
+						method: 'GET',
+						credentials: 'include',
+					});
+
 					if (!res.ok) {
 						reject(`HTTP error! status: ${res.status}`);
 					}
+
 					const weatherData = await res.json();
 
 					if (weatherData.success) {

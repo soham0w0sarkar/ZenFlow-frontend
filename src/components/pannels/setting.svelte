@@ -26,9 +26,7 @@
 	const deleteBackground = async (id) => {
 		await fetch(`${VITE_API_URL}/background/deleteBackground/${id}`, {
 			method: 'DELETE',
-			headers: {
-				'Content-Type': 'application/json'
-			}
+			credentials: 'include',
 		});
 	};
 
