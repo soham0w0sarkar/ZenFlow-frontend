@@ -1,9 +1,10 @@
 <script>
 	import Timer from './pannels/timer.svelte';
+	import Setting from './pannels/setting.svelte';
+	import Calendar from './pannels/calendar.svelte';
 	import Logout from './logout.svelte';
 	import GoogleBtn from './googleBtn.svelte';
 	import { IconList, IconCalendar, IconHourglassHigh, IconDeviceAnalytics, IconSettings, IconUser } from '@tabler/icons-svelte';
-	import Setting from './pannels/setting.svelte';
 
 	export let pannelNo;
 	export let selected;
@@ -20,7 +21,7 @@
 				break;
 			case 2:
 				icon = IconCalendar;
-				pannel = '';
+				pannel = Calendar;
 				break;
 			case 3:
 				icon = IconHourglassHigh;
