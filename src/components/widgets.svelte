@@ -1,7 +1,6 @@
 <script>
 	import { IconCloud, IconCloudFilled, IconCloudRain, IconCloudStorm, IconMist, IconSnowflake, IconSun } from '@tabler/icons-svelte';
 	import { onMount } from 'svelte';
-	const VITE_API_URL = import.meta.env.VITE_API_URL;
 
 	const timeFormat = (value) => {
 		if (value < 10) {
@@ -37,7 +36,7 @@
 				navigator.geolocation.getCurrentPosition(async (position) => {
 					const { latitude, longitude } = position.coords;
 					
-					const res = await fetch(`${VITE_API_URL}/widgets/weather/${latitude}/${longitude}`, {
+					const res = await fetch(`/api/widgets/weather/${latitude}/${longitude}`, {
 						method: 'GET',
 						credentials: 'include',
 					});

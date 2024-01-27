@@ -1,20 +1,22 @@
 import { isAuthenticated, backgrounds, backgroundUrl, joke } from '../lib/store.js';
-const VITE_API_URL = import.meta.env.VITE_API_URL;
 
 export async function load({ fetch }) {
-	const res = await fetch(`${VITE_API_URL}/auth/status`, {
+	const res = await fetch(`/api/auth/status`, {
 		method: 'GET',
 		credentials: 'include'
 	});
 	const data = await res.json();
 
-	const backgroundRes = await fetch(`${VITE_API_URL}/background/getBackground`, {
+	const backgroundRes = await fetch(`/api/background/getBackground`, {
 		method: 'GET',
 		credentials: 'include'
 	});
 	const backgroundData = await backgroundRes.json();
 
-	const jokeRes = await fetch(`${VITE_API_URL}/widgets/jokes`);
+	const jokeRes = await fetch(`/api/widgets/jokes`, {
+		method: 'GET',
+		credentials: 'include'
+	});
 	const jokeData = await jokeRes.json();
 
 	if (jokeData.success) joke.set(jokeData.joke);

@@ -1,5 +1,4 @@
 <script>
-	const VITE_API_URL = import.meta.env.VITE_API_URL;
 	import { backgrounds, backgroundUrl } from '../../lib/store.js';
 	import { IconCheck, IconTrash } from '@tabler/icons-svelte';
 
@@ -24,7 +23,7 @@
 	};
 
 	const deleteBackground = async (id) => {
-		await fetch(`${VITE_API_URL}/background/deleteBackground/${id}`, {
+		await fetch(`/api/background/deleteBackground/${id}`, {
 			method: 'DELETE',
 			credentials: 'include',
 		});

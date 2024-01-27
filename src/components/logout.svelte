@@ -1,12 +1,10 @@
 <script>
-	const VITE_API_URL = import.meta.env.VITE_API_URL;
 	import { IconPower } from '@tabler/icons-svelte';
 	import { isAuthenticated } from '../lib/store.js';
 
 	const logout = async () => {
 		try {
-			console.log('clicked');
-			const res = await fetch(`${VITE_API_URL}/auth/logout`, {
+			const res = await fetch(`/api/auth/logout`, {
 				method: 'GET',
 				credentials: 'include',
 			});

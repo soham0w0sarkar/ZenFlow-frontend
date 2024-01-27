@@ -1,7 +1,6 @@
 <script>
-	const VITE_API_URL = import.meta.env.VITE_API_URL;
 	const handleClick = () => {
-		window.location.href = `${VITE_API_URL}/auth/googleLogin`;
+		window.location.href = `/api/auth/googleLogin`;
 	};
 </script>
 
