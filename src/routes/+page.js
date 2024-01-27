@@ -19,7 +19,7 @@ export async function load({ fetch }) {
 	});
 	const jokeData = await jokeRes.json();
 
-	if (jokeData.success) joke.set(jokeData.joke);
+	joke.set(jokeData.joke);
 	if (data.success) isAuthenticated.set(data.success);
 	if (backgroundData.success) backgrounds.set(backgroundData?.backgrounds);
 	if (backgroundData.success) backgroundUrl.set(backgroundData?.backgrounds[0]?.url);
