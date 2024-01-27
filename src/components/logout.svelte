@@ -6,7 +6,7 @@
 		try {
 			const res = await fetch(`/api/auth/logout`, {
 				method: 'GET',
-				credentials: 'include',
+				credentials: 'include'
 			});
 			const data = await res.json();
 

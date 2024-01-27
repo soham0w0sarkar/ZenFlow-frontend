@@ -35,10 +35,10 @@
 			if (navigator.geolocation) {
 				navigator.geolocation.getCurrentPosition(async (position) => {
 					const { latitude, longitude } = position.coords;
-					
+
 					const res = await fetch(`/api/widgets/weather/${latitude}/${longitude}`, {
 						method: 'GET',
-						credentials: 'include',
+						credentials: 'include'
 					});
 
 					if (!res.ok) {

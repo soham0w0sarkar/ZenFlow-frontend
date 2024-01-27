@@ -21,7 +21,7 @@
 			const res = await fetch(`/api/background/setBackground`, {
 				method: 'POST',
 				body: formData,
-				credentials: 'include',
+				credentials: 'include'
 			});
 
 			const data = await res.json();

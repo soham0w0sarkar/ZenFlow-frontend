@@ -25,7 +25,7 @@
 	const deleteBackground = async (id) => {
 		await fetch(`/api/background/deleteBackground/${id}`, {
 			method: 'DELETE',
-			credentials: 'include',
+			credentials: 'include'
 		});
 	};
 
