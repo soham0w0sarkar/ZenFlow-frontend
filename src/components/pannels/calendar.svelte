@@ -8,6 +8,76 @@
 	let expand = [];
 	let events = [];
 
+	let summary = '';
+	let description = '';
+	let location = '';
+	let startTime = '';
+	let endTime = '';
+	let startDate = '';
+	let endDate = '';
+
+	$: if(startDate > endDate) {
+		if(startDate) {
+			endDate = startDate;
+		} else {
+			startDate = endDate;
+		}
+	};
+
+	$: if(startTime > endTime) {
+		if(startTime) {
+			endTime = startTime;
+		} else {
+			startTime = endTime;
+		}
+	};
+
+
+	const getEvents = async () => {
+		try {
+			const res = await fetch(`/api/widgets/calendar/`, {
+				method: 'GET',
+				credentials: 'include'
+			});
+
+			const data = await res.json();
+
+			if (data.status) {
+				events = data.events;
+				expand = Array(events.length).fill(false);
+			}
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	const createEvents = async () => {
+		try {
+			const res = await fetch(`/api/widgets/calendar/`, {
+				method: 'POST',
+				credentials: 'include',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					summary,
+					description,
+					location,
+					startTime,
+					endTime,
+					startDate,
+					endDate
+				})
+			});
+
+			const data = await res.json();
+
+			console.log(data);
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
 	const handleClickEvents = (index) => {
 		expand[index] = !expand[index];
 	};
@@ -21,20 +91,7 @@
 	};
 
 	onMount(async () => {
-		try {
-			const res = await fetch(`/api/widgets/calendar/getAllEvents`, {
-				method: 'GET',
-				credentials: 'include'
-			});
-			const data = await res.json();
-
-			if (data.status) {
-				events = data.events;
-				expand = Array(events.length).fill(false);
-			}
-		} catch (error) {
-			console.error(error);
-		}
+		await getEvents();
 	});
 </script>
 
@@ -76,23 +133,23 @@
 		<button class="absolute right-2 top-3 transition-all" on:click={handleOpenCreateEvents} style={openCreateEvent ? 'rotate:180deg;' : ''}><IconChevronDown class="-z-10" /></button>
 		{#if openCreateEvent}
 			<div class="w-full h-fit p-2 text-2xl font-bold variant-glass-surface transition-all rounded-md relative flex flex-col m-2">
-				<button class="absolute top-3 right-2"><IconSquarePlus /></button>
+				<button class="absolute top-3 right-2" on:click={createEvents} ><IconSquarePlus /></button>
 				<span class="h-fit w-full">
-					<input type="text" class="bg-inherit text-2xl border-transparent focus:border-transparent focus:ring-0" placeholder="summary" />
+					<input type="text" class="bg-inherit text-2xl border-transparent focus:border-transparent focus:ring-0 p-0" placeholder="summary" bind:value={summary}/>
 				</span>
 				<span class="h-fit w-full text-xl mt-2 m-1 flex justify-start">
-					<IconFileStack class="mr-1" /> <input type="text" class="bg-inherit text-xl p-0 border-transparent focus:border-transparent focus:ring-0" placeholder="description" />
+					<IconFileStack class="mr-1" /> <input type="text" class="bg-inherit text-xl p-0 border-transparent focus:border-transparent focus:ring-0" placeholder="description" bind:value="{description}" />
 				</span>
 				<span class="h-fit w-full text-xl m-1 flex justify-start">
-					<IconMapPin class="mr-1" /> <input type="text" class="bg-inherit text-xl p-0 border-transparent focus:border-transparent focus:ring-0" placeholder="location" />
+					<IconMapPin class="mr-1" /> <input type="text" class="bg-inherit text-xl p-0 border-transparent focus:border-transparent focus:ring-0" placeholder="location" bind:value="{location}"/>
 				</span>
 				<span class="h-fit w-full text-xl m-1 flex justify-start">
-					<IconCalendarEvent class="mr-1" /> <input type="time" class="bg-inherit p-0 border-transparent focus:border-transparent focus:ring-0" name="startTime" /> -
-					<input type="time" class="bg-inherit p-0 border-transparent focus:border-transparent focus:ring-0" name="endTime" />
+					<IconCalendarEvent class="mr-1" /> <input type="time" class="bg-inherit p-0 border-transparent focus:border-transparent focus:ring-0" name="startTime" bind:value="{startTime}"/> -
+					<input type="time" class="bg-inherit p-0 border-transparent focus:border-transparent focus:ring-0" name="endTime" bind:value="{endTime}"/>
 				</span>
 				<span class="h-fit w-full text-xl m-1 flex justify-start">
-					<IconCalendarEvent class="mr-1" /> <input type="date" class="bg-inherit p-0 border-transparent focus:border-transparent focus:ring-0" name="startDate" /> -
-					<input type="date" class="bg-inherit p-0 border-transparent focus:border-transparent focus:ring-0" name="endDate" />
+					<IconCalendarEvent class="mr-1" /> <input type="date" class="bg-inherit p-0 border-transparent focus:border-transparent focus:ring-0" name="startDate" bind:value="{startDate}" /> -
+					<input type="date" class="bg-inherit p-0 border-transparent focus:border-transparent focus:ring-0" name="endDate" bind:value="{endDate}" />
 				</span>
 			</div>
 		{/if}
