@@ -75,6 +75,7 @@
 					'Content-Type': 'application/json'
 				},
 				body: JSON.stringify({
+					currentColorId,
 					summary,
 					description,
 					location,
