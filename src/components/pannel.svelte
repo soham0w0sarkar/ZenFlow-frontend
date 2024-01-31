@@ -1,10 +1,11 @@
 <script>
-	import Timer from './pannels/timer.svelte';
-	import Setting from './pannels/setting.svelte';
-	import Calendar from './pannels/calendar.svelte';
-	import Logout from './logout.svelte';
 	import GoogleBtn from './googleBtn.svelte';
-	import { IconList, IconCalendar, IconHourglassHigh, IconDeviceAnalytics, IconSettings, IconUser } from '@tabler/icons-svelte';
+	import Calendar from './pannels/calendar.svelte';
+	import Timer from './pannels/timer.svelte';
+	import Mail from './pannels/mail.svelte';
+	import Setting from './pannels/setting.svelte';
+	import Logout from './logout.svelte';
+	import { IconList, IconCalendar, IconHourglassHigh, IconSettings, IconUser, IconMail } from '@tabler/icons-svelte';
 
 	export let pannelNo;
 	export let selected;
@@ -28,8 +29,8 @@
 				pannel = Timer;
 				break;
 			case 4:
-				icon = IconDeviceAnalytics;
-				pannel = '';
+				icon = IconMail;
+				pannel = Mail;
 				break;
 			case 5:
 				icon = IconSettings;

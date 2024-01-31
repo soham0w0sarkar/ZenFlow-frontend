@@ -17,7 +17,7 @@
 		});
 	};
 
-	import { IconList, IconCalendar, IconHourglassHigh, IconDeviceAnalytics, IconSettings, IconUser } from '@tabler/icons-svelte';
+	import { IconList, IconCalendar, IconHourglassHigh, IconSettings, IconUser, IconMail } from '@tabler/icons-svelte';
 </script>
 
 <div class="parent">
@@ -70,9 +70,9 @@
 				on:click={(e) => {
 					handleClick(+e.currentTarget.id, e.currentTarget.title);
 				}}
-				title="Analytics"
+				title="Mail"
 			>
-				<IconDeviceAnalytics size={40} />
+				<IconMail size={40} />
 			</button>
 		</div>
 		<div class="flex flex-col">
