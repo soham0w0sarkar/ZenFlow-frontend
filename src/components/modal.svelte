@@ -52,7 +52,13 @@
 	>
 		<IconX size={20} stroke={3} color="white" />
 	</button>
-	<FileDropzone name="files" bind:files={file} class="h-full w-full variant-glass-surface text-xl text-white" on:change={handleDrop} accept="image/jpeg/png" />
+	<FileDropzone
+		name="files"
+		bind:files={file}
+		class="h-full w-full variant-glass-surface text-xl text-white"
+		on:change={handleDrop}
+		accept="image/jpeg/png"
+	/>
 </dialog>
 
 <style>

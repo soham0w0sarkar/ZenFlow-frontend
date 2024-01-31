@@ -21,7 +21,11 @@
 </script>
 
 <div class="parent">
-	<div class={`h-full w-14 flex flex-col justify-between variant-${selected == true ? 'ghost' : 'glass'}-surface ${selected == true ? 'rounded-l-md' : 'rounded-md'} `}>
+	<div
+		class={`h-full w-14 flex flex-col justify-between variant-${selected == true ? 'ghost' : 'glass'}-surface ${
+			selected == true ? 'rounded-l-md' : 'rounded-md'
+		} `}
+	>
 		<div class="flex flex-col gap-2">
 			<button
 				aria-label="sidebar-icon"

@@ -50,13 +50,26 @@
 	</div>
 	<div class="h-3/4 w-full flex flex-col items-center">
 		<button class="w-0 h-0 m-2 point"></button>
-		<div class="flex justify-center items-center h-60 w-60 variant-glass-surface rounded-full relative p-4 transition-all" style="transform: rotate({rotation}deg);">
-			<span class="w-6 h-6 m-1 text-center text-lg font-bold absolute top-1" style="transform: rotate(-{rotation}deg);">{Math.floor(count / 60) * 60}</span>
-			<span class="w-6 h-6 m-1 text-center text-lg font-bold absolute left-1" style="transform: rotate(-{rotation}deg);">{Math.floor(count / 60) * 60 + 15}</span>
-			<span class="w-6 h-6 m-1 text-center text-lg font-bold absolute bottom-1" style="transform: rotate(-{rotation}deg);">{Math.floor(count / 60) * 60 + 30}</span>
-			<span class="w-6 h-6 m-1 text-center text-lg font-bold absolute right-1" style="transform: rotate(-{rotation}deg);">{Math.floor(count / 60) * 60 + 45}</span>
+		<div
+			class="flex justify-center items-center h-60 w-60 variant-glass-surface rounded-full relative p-4 transition-all"
+			style="transform: rotate({rotation}deg);"
+		>
+			<span class="w-6 h-6 m-1 text-center text-lg font-bold absolute top-1" style="transform: rotate(-{rotation}deg);"
+				>{Math.floor(count / 60) * 60}</span
+			>
+			<span class="w-6 h-6 m-1 text-center text-lg font-bold absolute left-1" style="transform: rotate(-{rotation}deg);"
+				>{Math.floor(count / 60) * 60 + 15}</span
+			>
+			<span class="w-6 h-6 m-1 text-center text-lg font-bold absolute bottom-1" style="transform: rotate(-{rotation}deg);"
+				>{Math.floor(count / 60) * 60 + 30}</span
+			>
+			<span class="w-6 h-6 m-1 text-center text-lg font-bold absolute right-1" style="transform: rotate(-{rotation}deg);"
+				>{Math.floor(count / 60) * 60 + 45}</span
+			>
 			{#if count > 0}
-				<button class="variant-filled-surface w-1/4 h-1/4 rounded-full p-2" on:click={handleTimer} style="transform: rotate(-{rotation}deg);"><IconPlayerPlayFilled size={38} /></button>
+				<button class="variant-filled-surface w-1/4 h-1/4 rounded-full p-2" on:click={handleTimer} style="transform: rotate(-{rotation}deg);"
+					><IconPlayerPlayFilled size={38} /></button
+				>
 			{/if}
 		</div>
 	</div>
