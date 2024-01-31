@@ -11,19 +11,31 @@
 
 	const getIcon = (icon) => {
 		switch (icon) {
-			case '01d' || '01n':
+			case '01d':
+			case '01n':
 				return IconSun;
-			case '02d' || '02n':
+			case '02d':
+			case '02n':
 				return IconCloud;
-			case '03d' || '03n' || '04d' || '04n':
+			case '03d':
+			case '03n':
+			case '04d':
+			case '04n':
 				return IconCloudFilled;
-			case '09d' || '09n' || '10d' || '10n':
+			case '09d':
+			case '09d':
+			case '09n':
+			case '10d':
+			case '10n':
 				return IconCloudRain;
-			case '11d' || '11n':
+			case '11d':
+			case '11n':
 				return IconCloudStorm;
-			case '13d' || '13n':
+			case '13d':
+			case '13n':
 				return IconSnowflake;
-			case '50d' || '50n':
+			case '50d':
+			case '50n':
 				return IconMist;
 			default:
 				return IconSun;
@@ -47,7 +59,7 @@
 
 					const weatherData = await res.json();
 
-					if (weatherData.success) {
+					if (!weatherData.success) {
 						reject('Unexpected API response');
 					}
 
@@ -89,7 +101,7 @@
 		temp = newTemp;
 		city = newCity;
 		icon = getIcon(newIcon);
-
+		
 		setTimeout(async () => {
 			const { temp: newTemp, city: newCity } = await getLocation();
 			temp = newTemp;
