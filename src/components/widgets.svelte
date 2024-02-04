@@ -101,7 +101,7 @@
 		temp = newTemp;
 		city = newCity;
 		icon = getIcon(newIcon);
-		
+
 		setTimeout(async () => {
 			const { temp: newTemp, city: newCity } = await getLocation();
 			temp = newTemp;
