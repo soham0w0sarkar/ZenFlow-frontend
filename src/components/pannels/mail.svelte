@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
-	import { IconChevronDown }from "@tabler/icons-svelte";
+	import { IconChevronDown, IconSquare } from '@tabler/icons-svelte';
 
 	let mails = [];
 	let oppend = [];
@@ -24,16 +24,43 @@
 	});
 </script>
 
-<div class="h-full w-full p-2 transition-all duration-200">
+<div class="h-full w-full p-2 transition-all duration-200 overflow-y-scroll">
 	<h1 class="w-full font-extrabold">Today's Mail</h1>
 	{#each mails as mail, i}
-		<a href="{mail.link}" target="_blank" class="h-fit w-full p-2 text-2xl rounded-md mt-2 variant-glass-surface flex flex-col relative transition-all duration-75">
-			<button class="h-fit w-fit absolute top-2 right-2 z-10 transition-all" on:click={(e) => {openSesame(i)}} style="{oppend[i] ? 'rotate:180deg;': ''}">
-				<IconChevronDown class="-z-10" />
+		<a
+			href={mail.link}
+			on:click={(e) => {
+				mails = mails.filter((m, j) => {
+					return j !== i;
+				});
+			}}
+			target="_blank"
+			class="h-fit w-full p-2 text-2xl rounded-md mt-2 variant-glass-surface flex flex-col relative transition-all duration-75"
+		>
+			<button
+				class="h-fit w-fit absolute top-2 right-2 z-1 transition-all"
+				on:click={(e) => {
+					e.stopPropagation();
+					e.preventDefault();
+					openSesame(i);
+				}}
+				style={oppend[i] ? 'rotate:180deg;' : ''}
+			>
+				<IconChevronDown class="-z-1" />
 			</button>
-			<span class="h-full w-fit font-bold text-xl">{mail.senderName}</span>
-			<span class="w-fit h-full">{(oppend[i] ? mail.subject : mail.short)}</span>
+			<button
+				class="absolute bottom-3 right-2 h-fit w-fit"
+				on:click={(e) => {
+					e.preventDefault();
+					e.stopPropagation();
+					mails = mails.filter((m, j) => {
+						return j !== i;
+					});
+				}}>
+					<IconSquare size="20" />
+				</button>
+			<span class="h-full w-fit font-bold text-xl -z-1">{mail.senderName}</span>
+			<span class="w-fit h-full -z-1">{oppend[i] ? mail.subject : mail.short}</span>
 		</a>
 	{/each}
-	
 </div>
