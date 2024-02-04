@@ -56,7 +56,7 @@
 
 			const data = await res.json();
 
-			if (data.status) {
+			if (data.success) {
 				events = data.events;
 				expand = Array(events.length).fill(false);
 			}
@@ -87,7 +87,7 @@
 
 			const data = await res.json();
 
-			if (data.status) {
+			if (data.success) {
 				await getEvents();
 			}
 		} catch (error) {
