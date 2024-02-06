@@ -56,9 +56,10 @@
 					mails = mails.filter((m, j) => {
 						return j !== i;
 					});
-				}}>
-					<IconSquare size="20" />
-				</button>
+				}}
+			>
+				<IconSquare size="20" />
+			</button>
 			<span class="h-full w-fit font-bold text-xl -z-1">{mail.senderName}</span>
 			<span class="w-fit h-full -z-1">{oppend[i] ? mail.subject : mail.short}</span>
 		</a>
