@@ -1,5 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
+	import Spinner from '../spinner.svelte';
 	import { IconChevronDown, IconSquare } from '@tabler/icons-svelte';
 
 	let mails = [];
@@ -24,8 +25,12 @@
 	});
 </script>
 
-<div class="h-full w-full p-2 transition-all duration-200 overflow-y-scroll">
-	<h1 class="w-full font-extrabold">Today's Mail</h1>
+<div class="h-full w-full p-2 transition-all duration-200 overflow-y-scroll relative {mails.length == 0 ? 'flex items-center justify-center' : ''}">
+	{#if mails.length === 0}
+		<Spinner />
+	{:else}
+		<h1 class="w-full font-extrabold">Today's Mail</h1>
+	{/if}
 	{#each mails as mail, i}
 		<a
 			href={mail.link}
