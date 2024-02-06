@@ -17,7 +17,7 @@
 		});
 	};
 
-	import { IconList, IconCalendar, IconHourglassHigh, IconSettings, IconUser, IconMail } from '@tabler/icons-svelte';
+	import { IconCalendar, IconHourglassHigh, IconSettings, IconUser, IconMail, IconBrandGoogle } from '@tabler/icons-svelte';
 </script>
 
 <div class="parent">
@@ -34,9 +34,9 @@
 				on:click={(e) => {
 					handleClick(+e.currentTarget.id, e.currentTarget.title);
 				}}
-				title="List"
+				title="Google"
 			>
-				<IconList size={40} />
+				<IconBrandGoogle size={35} />
 			</button>
 
 			<button

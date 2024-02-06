@@ -10,7 +10,7 @@
 
 	let selected = true;
 	let pannelNo = 1;
-	let title = 'List';
+	let title = 'Google';
 
 	const handleClick = (details) => {
 		selected = details.selected;

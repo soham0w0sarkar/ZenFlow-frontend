@@ -1,11 +1,12 @@
 <script>
 	import GoogleBtn from './googleBtn.svelte';
+	import Google from './pannels/google.svelte';
 	import Calendar from './pannels/calendar.svelte';
 	import Timer from './pannels/timer.svelte';
 	import Mail from './pannels/mail.svelte';
 	import Setting from './pannels/setting.svelte';
 	import Logout from './logout.svelte';
-	import { IconList, IconCalendar, IconHourglassHigh, IconSettings, IconUser, IconMail } from '@tabler/icons-svelte';
+	import { IconList, IconCalendar, IconHourglassHigh, IconSettings, IconUser, IconMail, IconBrandGoogle } from '@tabler/icons-svelte';
 
 	export let pannelNo;
 	export let selected;
@@ -17,8 +18,8 @@
 	$: {
 		switch (pannelNo) {
 			case 1:
-				icon = IconList;
-				pannel = '';
+				icon = IconBrandGoogle;
+				pannel = Google;
 				break;
 			case 2:
 				icon = IconCalendar;
@@ -41,8 +42,8 @@
 				pannel = '';
 				break;
 			default:
-				icon = IconList;
-				pannel = '';
+				icon = IconGoogle;
+				pannel = Google;
 		}
 	}
 </script>
