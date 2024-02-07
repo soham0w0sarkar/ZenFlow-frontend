@@ -1,4 +1,5 @@
 <script>
+	import GoogleTest from './pannels/googleTest.svelte';
 	import GoogleBtn from './googleBtn.svelte';
 	import Google from './pannels/google.svelte';
 	import Calendar from './pannels/calendar.svelte';
@@ -19,7 +20,7 @@
 		switch (pannelNo) {
 			case 1:
 				icon = IconBrandGoogle;
-				pannel = Google;
+				pannel = GoogleTest;
 				break;
 			case 2:
 				icon = IconCalendar;
