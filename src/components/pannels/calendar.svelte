@@ -1,5 +1,5 @@
 <script>
-	import { IconChevronDown, IconMapPin, IconCalendarEvent, IconFileStack, IconSquarePlus, IconCircleCheckFilled } from '@tabler/icons-svelte';
+	import { IconChevronDown, IconMapPin, IconCalendarEvent, IconFileStack, IconSquarePlus, IconClockHour12, IconRepeat } from '@tabler/icons-svelte';
 	import { onMount } from 'svelte';
 
 	const colorId = {
@@ -148,12 +148,16 @@
 							{event.location}
 						</span>
 						<span class="h-fit w-full text-xl m-1 flex justify-start">
-							<IconCalendarEvent class="mr-1" />
+							<IconClockHour12 class="mr-1" />
 							{event.startTime} - {event.endTime}
 						</span>
 						<span class="h-fit w-full text-xl m-1 flex justify-start">
 							<IconCalendarEvent class="mr-1" />
 							{event.startDate} - {event.endDate}
+						</span>
+						<span class="h-fit w-full text-xl m-1 flex justify-start">
+							<IconRepeat class="mr-1" />
+							{event.repeat}
 						</span>
 					{/if}
 				</div>
@@ -198,7 +202,7 @@
 					/>
 				</span>
 				<span class="h-fit w-full text-xl m-1 flex justify-start">
-					<IconCalendarEvent class="mr-1" />
+					<IconClockHour12 class="mr-1" />
 					<input
 						type="time"
 						class="bg-inherit p-0 border-transparent focus:border-transparent focus:ring-0"
@@ -226,7 +230,8 @@
 							id={index + 1}
 							style="background-color: {colorId[index + 1]}; {currentColorId == index + 1 ? 'border: none' : ''}"
 							on:click={changeColor}
-						></button>
+						>
+						</button>
 					{/each}
 				</span>
 			</div>
