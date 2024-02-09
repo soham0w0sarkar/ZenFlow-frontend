@@ -20,7 +20,7 @@
 		switch (pannelNo) {
 			case 1:
 				icon = IconBrandGoogle;
-				pannel = GoogleTest;
+				pannel = Google;
 				break;
 			case 2:
 				icon = IconCalendar;

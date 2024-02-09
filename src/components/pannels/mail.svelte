@@ -21,8 +21,8 @@
 		if (data.success) {
 			mails = data.mails;
 
-			if(mails.length == 0) {
-				mails = [{senderName: 'No Mail', subject: 'No Mail', short: 'No Mail' ,link: '#'}]
+			if (mails.length == 0) {
+				mails = [{ senderName: 'No Mail', subject: 'No Mail', short: 'No Mail', link: '#' }];
 			}
 
 			oppend = new Array(mails.length).fill(false);
