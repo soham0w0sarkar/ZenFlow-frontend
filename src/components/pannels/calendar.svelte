@@ -89,6 +89,8 @@
 
 			if (data.success) {
 				await getEvents();
+				openCreateEvent = false;
+				openRecentEvent = true;
 			}
 		} catch (error) {
 			console.error(error);
@@ -227,7 +229,6 @@
 						></button>
 					{/each}
 				</span>
-				<!-- <span class="h-fit w-full text-2xl text-center">Done</span> -->
 			</div>
 		{/if}
 	</div>
