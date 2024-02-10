@@ -1,5 +1,15 @@
 <script>
-	import { IconChevronDown, IconMapPin, IconCalendarEvent, IconFileStack, IconSquarePlus, IconClockHour12, IconRepeat } from '@tabler/icons-svelte';
+	import {
+		IconChevronDown,
+		IconMapPin,
+		IconCalendarEvent,
+		IconFileStack,
+		IconSquarePlus,
+		IconClockHour12,
+		IconRepeat,
+		IconList
+	} from '@tabler/icons-svelte';
+	import { ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
 	import { onMount } from 'svelte';
 
 	const colorId = {
@@ -31,6 +41,11 @@
 	let startDate = '';
 	let endDate = '';
 
+	let repeat = 'No Repeat';
+	let repeatValues = [];
+	
+	let openDropDown = false;
+
 	$: if (startDate > endDate) {
 		if (startDate) {
 			endDate = startDate;
@@ -45,6 +60,43 @@
 		} else {
 			startTime = endTime;
 		}
+	}
+
+	$: if(startDate) {
+		const date = new Date(startDate);
+
+		repeatValues = [
+			{
+				value: '0',
+				label: 'No Repeat'
+			},
+			{
+				value: '1',
+				label: 'Daily'
+			},
+			{
+				value: '2' + date.getDay(),
+				label: 'Weekly'
+			},
+			{
+				value: 'Yearly',
+				label: 'Yearly'
+			}
+		];
+	}
+
+	function getDayPosition(date) {
+    	const weekOfMonth = Math.ceil((date.getDate() + date.getDay()) / 7);
+    	const dayOfWeek = date.getDay();
+
+    	const isLastDayOfWeekInMonth = date.getDate() > 7 * (4 - weekOfMonth);
+
+    	if (weekOfMonth === 1) return '1';
+    	if (weekOfMonth === 2) return '2';
+    	if (weekOfMonth === 3) return '3';
+    	if (weekOfMonth === 4 && !isLastDayOfWeekInMonth) return '4';
+		if (weekOfMonth === 4 && isLastDayOfWeekInMonth) return '5';
+    	return '-1';
 	}
 
 	const getEvents = async () => {
@@ -81,7 +133,8 @@
 					startTime,
 					endTime,
 					startDate,
-					endDate
+					endDate,
+					repeat
 				})
 			});
 
@@ -167,8 +220,9 @@
 	<div class="h-fit w-full variant-ghost-surface p-3 flex flex-col items-center relative transition-all">
 		<div class="text-xl font-bold w-full">Create Events</div>
 		<button class="absolute right-2 top-3 transition-all" on:click={handleOpenCreateEvents} style={openCreateEvent ? 'rotate:180deg;' : ''}
-			><IconChevronDown class="-z-10" /></button
-		>
+			>
+			<IconChevronDown class="-z-10" />
+		</button>
 		{#if openCreateEvent}
 			<div
 				class="w-full h-fit p-2 text-2xl font-bold variant-glass-surface transition-all rounded-md relative flex flex-col m-2"
@@ -223,7 +277,27 @@
 					-
 					<input type="date" class="bg-inherit p-0 border-transparent focus:border-transparent focus:ring-0" name="endDate" bind:value={endDate} />
 				</span>
-				<span class="h-fit w-full flex gap-1 m-1">
+				<span class="h-fit w-full text-xl m-1 flex justify-start">
+					<IconRepeat class="mr-1" />
+					<span class="flex flex-col transition-all">
+						<button
+							class="text-left flex items-center "
+							on:click={() => {
+								openDropDown = !openDropDown;
+							}}
+						>
+							{repeat}
+							<IconChevronDown class="ml-1 transition-all" style={openDropDown ? 'rotate:180deg;' : ''} />
+						</button>
+						{#if openDropDown}
+							<ListBox class="w-fit">
+								<ListBoxItem bind:group={repeat} class="font-medium" name="medium" value="No Repeat">No Repeat</ListBoxItem>
+								<ListBoxItem bind:group={repeat} class="font-medium" name="medium" value="Daily">Daily</ListBoxItem>
+							</ListBox>
+						{/if}
+					</span>
+				</span>
+				<span class="h-fit w-full flex gap-1 m-1 mt-2">
 					{#each Object.keys(colorId) as color, index}
 						<button
 							class="rounded-full inline-block h-7 w-7 border-2 border-white transition-all"
