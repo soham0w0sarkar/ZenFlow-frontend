@@ -9,7 +9,7 @@ export async function load({ fetch }) {
 	if (status.success) isAuthenticated.set(status.success);
 	if (background.success) {
 		backgrounds.set(background?.backgrounds);
-		backgroundUrl.set(background?.backgrounds[0]?.url);
+		backgroundUrl.set(background?.currentBackground);
 	}
 	if (Joke.success) joke.set(Joke.joke);
 }

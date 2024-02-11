@@ -27,7 +27,7 @@
 			const data = await res.json();
 
 			if (data.success) {
-				$backgrounds = [{ id: data.id, url: data.url }, ...$backgrounds];
+				$backgrounds = [...$backgrounds, { id: data.id, url: data.url }];
 				$backgroundUrl = data.url;
 			}
 		} catch (error) {
