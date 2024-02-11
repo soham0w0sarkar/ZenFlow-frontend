@@ -41,9 +41,10 @@
 	let startDate = '';
 	let endDate = '';
 
+	let reccurence = 'NA';
 	let repeat = 'No Repeat';
 	let repeatValues = [];
-	
+
 	let openDropDown = false;
 
 	$: if (startDate > endDate) {
@@ -62,41 +63,60 @@
 		}
 	}
 
-	$: if(startDate) {
+	$: if (startDate) {
 		const date = new Date(startDate);
 
+		const dayPosition = getDayPosition(date);
+		const day = 'SU MO TU WE TH FR SA'.split(' ')[date.getDay()];
+
+		let monthValue;
+
+		if (dayPosition === 5) {
+			monthValue = [
+				{
+					value: ` 'RRULE:FREQ=MONTHLY;BYDAY=4${day}' `,
+					label: 'Monthly on the fourth ' + date.toLocaleDateString('en-US', { weekday: 'long' })
+				},
+				{
+					value: ` 'RRULE:FREQ=MONTHLY;BYDAY=-1${day}' `,
+					label: 'Monthly on the last ' + date.toLocaleDateString('en-US', { weekday: 'long' })
+				}
+			];
+		} else if (dayPosition === -1) {
+			monthValue = [
+				{
+					value: ` 'RRULE:FREQ=MONTHLY;BYDAY=-1${day}' `,
+					label: 'Monthly on the last ' + date.toLocaleDateString('en-US', { weekday: 'long' })
+				}
+			];
+		} else {
+			monthValue = [
+				{
+					value: ` 'RRULE:FREQ=MONTHLY;BYDAY=${dayPosition}${day}' `,
+					label: 'Monthly on the ' + 'first second third'.split(' ')[dayPosition - 1] + ' ' + date.toLocaleDateString('en-US', { weekday: 'long' })
+				}
+			];
+		}
+
 		repeatValues = [
-			{
-				value: '0',
-				label: 'No Repeat'
-			},
-			{
-				value: '1',
-				label: 'Daily'
-			},
-			{
-				value: '2' + date.getDay(),
-				label: 'Weekly'
-			},
-			{
-				value: 'Yearly',
-				label: 'Yearly'
-			}
+			{ value: 'NA', label: 'No Repeat' },
+			{ value: " 'RRULE:FREQ=DAILY' ", label: 'Daily' },
+			{ value: ` 'RRULE:FREQ=WEEKLY;BYDAY=${day}' `, label: 'Weekly on ' + date.toLocaleDateString('en-US', { weekday: 'long' }) },
+			...monthValue,
+			{ value: ` 'RRULE:FREQ=YEARLY' `, label: 'Yearly on ' + date.toLocaleDateString('en-US', { month: 'long', day: 'numeric' }) }
 		];
 	}
 
 	function getDayPosition(date) {
-    	const weekOfMonth = Math.ceil((date.getDate() + date.getDay()) / 7);
-    	const dayOfWeek = date.getDay();
+		const weekOfMonth = Math.ceil((date.getDate() + date.getDay()) / 7);
+		const isLastDayOfWeekInMonth = date.getDate() > 7 * (4 - weekOfMonth);
 
-    	const isLastDayOfWeekInMonth = date.getDate() > 7 * (4 - weekOfMonth);
-
-    	if (weekOfMonth === 1) return '1';
-    	if (weekOfMonth === 2) return '2';
-    	if (weekOfMonth === 3) return '3';
-    	if (weekOfMonth === 4 && !isLastDayOfWeekInMonth) return '4';
-		if (weekOfMonth === 4 && isLastDayOfWeekInMonth) return '5';
-    	return '-1';
+		if (weekOfMonth === 1) return 1;
+		if (weekOfMonth === 2) return 2;
+		if (weekOfMonth === 3) return 3;
+		if (weekOfMonth === 4 && !isLastDayOfWeekInMonth) return 4;
+		if (weekOfMonth === 4 && isLastDayOfWeekInMonth) return 5;
+		return -1;
 	}
 
 	const getEvents = async () => {
@@ -134,7 +154,7 @@
 					endTime,
 					startDate,
 					endDate,
-					repeat
+					reccurence
 				})
 			});
 
@@ -219,8 +239,7 @@
 	</div>
 	<div class="h-fit w-full variant-ghost-surface p-3 flex flex-col items-center relative transition-all">
 		<div class="text-xl font-bold w-full">Create Events</div>
-		<button class="absolute right-2 top-3 transition-all" on:click={handleOpenCreateEvents} style={openCreateEvent ? 'rotate:180deg;' : ''}
-			>
+		<button class="absolute right-2 top-3 transition-all" on:click={handleOpenCreateEvents} style={openCreateEvent ? 'rotate:180deg;' : ''}>
 			<IconChevronDown class="-z-10" />
 		</button>
 		{#if openCreateEvent}
@@ -281,7 +300,7 @@
 					<IconRepeat class="mr-1" />
 					<span class="flex flex-col transition-all">
 						<button
-							class="text-left flex items-center "
+							class="text-left flex items-center"
 							on:click={() => {
 								openDropDown = !openDropDown;
 							}}
@@ -291,8 +310,17 @@
 						</button>
 						{#if openDropDown}
 							<ListBox class="w-fit">
-								<ListBoxItem bind:group={repeat} class="font-medium" name="medium" value="No Repeat">No Repeat</ListBoxItem>
-								<ListBoxItem bind:group={repeat} class="font-medium" name="medium" value="Daily">Daily</ListBoxItem>
+								{#each repeatValues as value}
+									<ListBoxItem
+										bind:group={reccurence}
+										class="font-medium"
+										name="medium"
+										value={value.value}
+										on:click={(e) => {
+											repeat = value.label;
+										}}>{value.label}</ListBoxItem
+									>
+								{/each}
 							</ListBox>
 						{/if}
 					</span>
