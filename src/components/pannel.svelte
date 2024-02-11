@@ -1,5 +1,4 @@
 <script>
-	import GoogleTest from './pannels/googleTest.svelte';
 	import GoogleBtn from './googleBtn.svelte';
 	import Google from './pannels/google.svelte';
 	import Calendar from './pannels/calendar.svelte';
@@ -7,7 +6,7 @@
 	import Mail from './pannels/mail.svelte';
 	import Setting from './pannels/setting.svelte';
 	import Logout from './logout.svelte';
-	import { IconList, IconCalendar, IconHourglassHigh, IconSettings, IconUser, IconMail, IconBrandGoogle } from '@tabler/icons-svelte';
+	import { IconCalendar, IconHourglassHigh, IconSettings, IconUser, IconMail, IconBrandGoogle } from '@tabler/icons-svelte';
 
 	export let pannelNo;
 	export let selected;
