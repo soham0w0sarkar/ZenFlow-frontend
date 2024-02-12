@@ -28,7 +28,7 @@
 		});
 	};
 
-	const handleSet = async(e, bg) => {
+	const handleSet = async (e, bg) => {
 		try {
 			e.stopPropagation();
 			setBackground(bg.id);
@@ -40,11 +40,10 @@
 
 	const setBackground = async (id) => {
 		await fetch(`/api/background/currentBackground/${id}`, {
-				method: 'POST',
-				credentials: 'include'
+			method: 'POST',
+			credentials: 'include'
 		});
 	};
-
 </script>
 
 <div class="h-full w-full p-2 flex flex-col items-center">
