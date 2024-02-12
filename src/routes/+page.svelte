@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { backgroundUrl } from '../lib/store.js';
 
+
 	let isMounted = false;
 
 	const setBackgorund = () => {
@@ -26,3 +27,4 @@
 <svelte:head>
 	<title>ZenFlow</title>
 </svelte:head>
+

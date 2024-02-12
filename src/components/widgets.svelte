@@ -116,7 +116,7 @@
 </script>
 
 <div class="variant-glass-surface flex justify-between items-center rounded-md h-1/2 w-60 p-2">
-	<div class="h-full p-2 w-fit rounded-md hover:variant-glass-surface">
+	<div class="h-full p-2 w-fit rounded-md hover:variant-glass-surface cursor-pointer">
 		<div class="w-full h-2/3 flex items-center justify-evenly text-xl font-bold">
 			<span><svelte:component this={icon} /></span>
 			<span>{temp}°C</span>
@@ -124,7 +124,7 @@
 		<div class="w-full h-1/3 flex justify-center">{city}</div>
 	</div>
 	<span class="h-3/4 bg-white w-px"></span>
-	<div class="h-full p-2 w-5/12 rounded-md hover:variant-glass-surface">
+	<div class="h-full p-2 w-5/12 rounded-md hover:variant-glass-surface cursor-pointer">
 		<div class="w-full h-2/3 flex justify-center text-xl font-bold">{time}</div>
 		<div class="w-full h-1/3 flex justify-center">{displayDate}</div>
 	</div>
