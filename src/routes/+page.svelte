@@ -1,7 +1,7 @@
 <script>
+	import Weather from '../components/cards/weather.svelte';
 	import { onMount } from 'svelte';
 	import { backgroundUrl } from '../lib/store.js';
-
 
 	let isMounted = false;
 
@@ -28,3 +28,6 @@
 	<title>ZenFlow</title>
 </svelte:head>
 
+<div class="static h-full w-full">
+	<Weather />
+</div>
