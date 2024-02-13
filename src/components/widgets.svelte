@@ -1,4 +1,5 @@
 <script>
+	import { currentCard, weather } from './../lib/store.js';
 	import { IconCloud, IconCloudFilled, IconCloudRain, IconCloudStorm, IconMist, IconSnowflake, IconSun } from '@tabler/icons-svelte';
 	import { onMount } from 'svelte';
 
@@ -63,9 +64,9 @@
 						reject('Unexpected API response');
 					}
 
-					const { icon, temp, city } = weatherData.data;
+					const data = weatherData.data;
 
-					resolve({ icon, temp, city });
+					resolve(data);
 				});
 			} else {
 				reject('Geolocation is not supported by this browser.');
@@ -91,22 +92,14 @@
 	};
 
 	let { time, displayDate } = getTimeAndDate();
-	let temp = '',
-		city = '',
-		icon = IconSun;
 
 	onMount(async () => {
 		let interval = (60 - new Date().getSeconds()) * 1000;
-		let { icon: newIcon, temp: newTemp, city: newCity } = await getLocation();
-		temp = newTemp;
-		city = newCity;
-		icon = getIcon(newIcon);
+
+		$weather = await getLocation();
+		$weather.icon = getIcon($weather.icon);
 
 		setTimeout(async () => {
-			const { temp: newTemp, city: newCity } = await getLocation();
-			temp = newTemp;
-			city = newCity;
-
 			setInterval(() => {
 				const { time: newTime } = getTimeAndDate();
 				time = newTime;
@@ -117,11 +110,11 @@
 
 <div class="variant-glass-surface flex justify-between items-center rounded-md h-1/2 w-60 p-2">
 	<div class="h-full p-2 w-fit rounded-md hover:variant-glass-surface cursor-pointer">
-		<div class="w-full h-2/3 flex items-center justify-evenly text-xl font-bold">
-			<span><svelte:component this={icon} /></span>
-			<span>{temp}°C</span>
-		</div>
-		<div class="w-full h-1/3 flex justify-center">{city}</div>
+		<button class="w-full h-2/3 flex items-center justify-evenly text-xl font-bold" on:click={() => {$currentCard = 0}}>
+			<span><svelte:component this={$weather.icon || ""} /></span>
+			<span>{$weather.temp || ""}°C</span>
+		</button>
+		<div class="w-full h-1/3 flex justify-center">{$weather.city || ""}</div>
 	</div>
 	<span class="h-3/4 bg-white w-px"></span>
 	<div class="h-full p-2 w-5/12 rounded-md hover:variant-glass-surface cursor-pointer">
