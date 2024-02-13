@@ -5,7 +5,6 @@
 
 	let isMounted = false;
 	let card;
-	
 
 	const setBackgorund = () => {
 		if ($backgroundUrl) {
@@ -21,7 +20,7 @@
 	}
 
 	$: {
-		switch($currentCard) {
+		switch ($currentCard) {
 			case 0:
 				card = Weather;
 				break;
@@ -47,5 +46,5 @@
 </svelte:head>
 
 <div class="static h-full w-full">
-	<svelte:component this={card}/>
+	<svelte:component this={card} />
 </div>
