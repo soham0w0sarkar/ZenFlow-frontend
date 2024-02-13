@@ -1,9 +1,11 @@
 <script>
 	import Weather from '../components/cards/weather.svelte';
 	import { onMount } from 'svelte';
-	import { backgroundUrl } from '../lib/store.js';
+	import { backgroundUrl, currentCard } from '../lib/store.js';
 
 	let isMounted = false;
+	let card;
+	
 
 	const setBackgorund = () => {
 		if ($backgroundUrl) {
@@ -18,9 +20,25 @@
 		setBackgorund();
 	}
 
+	$: {
+		switch($currentCard) {
+			case 0:
+				card = Weather;
+				break;
+			default:
+				card = '';
+		}
+	}
+
 	onMount(() => {
 		isMounted = true;
 		setBackgorund();
+
+		document.addEventListener('keydown', (e) => {
+			if (e.key === 'Escape') {
+				$currentCard = -1;
+			}
+		});
 	});
 </script>
 
@@ -29,5 +47,5 @@
 </svelte:head>
 
 <div class="static h-full w-full">
-	<Weather />
+	<svelte:component this={card}/>
 </div>
