@@ -87,43 +87,64 @@
 		const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 		const displayDate = `${weekDays[week]}, ${day}`;
+		const intervalTime = (60 - date.getSeconds()) * 1000;
+		const intervalDate = (24 - date.getHours()) * 60 * 60 * 1000;
 
-		return { time, displayDate };
+		return { time, displayDate, intervalTime, intervalDate};
 	};
 
-	let { time, displayDate } = getTimeAndDate();
+	let { time, displayDate, intervalTime, intervalDate } = getTimeAndDate();
 
 	onMount(async () => {
-		let interval = (60 - new Date().getSeconds()) * 1000;
-
 		$weather = await getLocation();
 		$weather.icon = getIcon($weather.icon);
+		let count = 0;
+
+		setInterval(async () => {
+			$weather = await getLocation();
+			$weather.icon = getIcon($weather.icon);
+			console.log('Weather updated', count++);
+		}, 3600000);
 
 		setTimeout(async () => {
-			setInterval(() => {
-				const { time: newTime } = getTimeAndDate();
-				time = newTime;
-			}, 60 * 1000);
-		}, interval);
+			({ time } = getTimeAndDate());
+		}, intervalTime);
+
+		setInterval(async () => {
+			({ time } = getTimeAndDate());
+		}, 60000);
+
+		setTimeout(async () => {
+			({ displayDate } = getTimeAndDate());
+		}, intervalDate);
+
+		setInterval(async () => {
+			({ displayDate } = getTimeAndDate());
+		}, 86400000);
 	});
 </script>
 
 <div class="variant-glass-surface flex justify-between items-center rounded-md h-1/2 w-60 p-2">
-	<div class="h-full p-2 w-fit rounded-md hover:variant-glass-surface cursor-pointer">
-		<button
-			class="w-full h-2/3 flex items-center justify-evenly text-xl font-bold"
-			on:click={() => {
-				$currentCard = 0;
-			}}
-		>
+	<button
+		class="h-full p-2 w-fit rounded-md hover:variant-glass-surface cursor-pointer"
+		on:click={() => {
+			$currentCard = 0;
+		}}
+	>
+		<div class="w-full h-2/3 flex items-center justify-evenly text-xl font-bold">
 			<span><svelte:component this={$weather.icon || ''} /></span>
 			<span>{$weather.temp || ''}°C</span>
-		</button>
+		</div>
 		<div class="w-full h-1/3 flex justify-center">{$weather.city || ''}</div>
-	</div>
+	</button>
 	<span class="h-3/4 bg-white w-px"></span>
-	<div class="h-full p-2 w-5/12 rounded-md hover:variant-glass-surface cursor-pointer">
+	<button
+		class="h-full p-2 w-5/12 rounded-md hover:variant-glass-surface cursor-pointer"
+		on:click={() => {
+			$currentCard = 1;
+		}}
+	>
 		<div class="w-full h-2/3 flex justify-center text-xl font-bold">{time}</div>
 		<div class="w-full h-1/3 flex justify-center">{displayDate}</div>
-	</div>
+	</button>
 </div>
