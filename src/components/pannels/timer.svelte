@@ -6,6 +6,7 @@
 	let rotation = 0;
 	let seconds = 0;
 	let clicked = false;
+	let play = false;
 
 	$: seconds = count * 60;
 	$: rotation = (seconds / 3600) * 360;
@@ -18,17 +19,27 @@
 		}
 	};
 
-	const handleTimer = () => {
-		const timer = setInterval(() => {
-			if (seconds > 0) {
-				seconds -= 1;
-				if (seconds % 60 === 0) {
-					count -= 1;
-				}
-			} else {
-				clearInterval(timer);
+	const timer = () => {
+		if (seconds > 0) {
+			seconds -= 1;
+			console.log(seconds);
+			if (seconds % 60 === 0) {
+				count -= 1;
 			}
-		}, 1000);
+		} else {
+			handleTimer(false);
+		}
+	};
+
+	const handleTimer = (start) => {
+		if(start) {
+			setInterval(timer, 1000);
+			play = true;
+		} else {
+			clearInterval(timer);
+			count = 0;
+			play = false;
+		}
 	};
 
 	onMount(() => {
@@ -54,22 +65,26 @@
 			class="flex justify-center items-center h-60 w-60 variant-glass-surface rounded-full relative p-4 transition-all"
 			style="transform: rotate({rotation}deg);"
 		>
-			<span class="w-6 h-6 m-1 text-center text-lg font-bold absolute top-1" style="transform: rotate(-{rotation}deg);"
-				>{Math.floor(count / 60) * 60}</span
-			>
-			<span class="w-6 h-6 m-1 text-center text-lg font-bold absolute left-1" style="transform: rotate(-{rotation}deg);"
-				>{Math.floor(count / 60) * 60 + 15}</span
-			>
-			<span class="w-6 h-6 m-1 text-center text-lg font-bold absolute bottom-1" style="transform: rotate(-{rotation}deg);"
-				>{Math.floor(count / 60) * 60 + 30}</span
-			>
-			<span class="w-6 h-6 m-1 text-center text-lg font-bold absolute right-1" style="transform: rotate(-{rotation}deg);"
-				>{Math.floor(count / 60) * 60 + 45}</span
-			>
+			<span class="w-6 h-6 m-1 text-center text-lg font-bold absolute top-1" style="transform: rotate(-{rotation}deg);">
+				{Math.floor(count / 60) * 60}
+			</span>
+			<span class="w-6 h-6 m-1 text-center text-lg font-bold absolute left-1" style="transform: rotate(-{rotation}deg);">
+				{Math.floor(count / 60) * 60 + 15}
+			</span>
+			<span class="w-6 h-6 m-1 text-center text-lg font-bold absolute bottom-1" style="transform: rotate(-{rotation}deg);">
+				{Math.floor(count / 60) * 60 + 30}
+			</span>
+			<span class="w-6 h-6 m-1 text-center text-lg font-bold absolute right-1" style="transform: rotate(-{rotation}deg);">
+				{Math.floor(count / 60) * 60 + 45}
+			</span>
 			{#if count > 0}
-				<button class="variant-filled-surface w-1/4 h-1/4 rounded-full p-2" on:click={handleTimer} style="transform: rotate(-{rotation}deg);"
-					><IconPlayerPlayFilled size={38} /></button
-				>
+				<button class="variant-filled-surface w-1/4 h-1/4 rounded-full p-2" on:click={() => {handleTimer(!play)}} style="transform: rotate(-{rotation}deg);">
+					{#if play}
+						<IconPlayerStopFilled size={38}/>
+					{:else}
+						<IconPlayerPlayFilled size={38}/>
+					{/if}
+				</button>
 			{/if}
 		</div>
 	</div>
