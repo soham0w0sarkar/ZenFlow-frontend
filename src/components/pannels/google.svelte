@@ -25,8 +25,6 @@
 		}
 	}
 
-	$: console.log(suggestions);
-
 	const search = (event) => {
 		event.preventDefault();
 		window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
