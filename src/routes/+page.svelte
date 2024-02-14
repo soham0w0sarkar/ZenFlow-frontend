@@ -1,4 +1,5 @@
 <script>
+	import Time from './../components/cards/time.svelte';
 	import Weather from '../components/cards/weather.svelte';
 	import { onMount } from 'svelte';
 	import { backgroundUrl, currentCard } from '../lib/store.js';
@@ -23,6 +24,9 @@
 		switch ($currentCard) {
 			case 0:
 				card = Weather;
+				break;
+			case 1:
+				card = Time;
 				break;
 			default:
 				card = '';
