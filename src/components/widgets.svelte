@@ -114,13 +114,13 @@
 			({ time } = getTimeAndDate());
 		}, 60000);
 
-		setTimeout(async () => {
-			({ displayDate } = getTimeAndDate());
-		}, intervalDate);
+	// 	setTimeout(async () => {
+	// 		({ displayDate } = getTimeAndDate());
+	// 	}, intervalDate);
 
-		setInterval(async () => {
-			({ displayDate } = getTimeAndDate());
-		}, 86400000);
+	// 	setInterval(async () => {
+	// 		({ displayDate } = getTimeAndDate());
+	// 	}, 86400000);
 	});
 </script>
 
