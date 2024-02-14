@@ -1,28 +1,28 @@
 <script>
-    const timeFormat = (time) => {
-        return time < 10 ? `0${time}` : time;
-    };
+	const timeFormat = (time) => {
+		return time < 10 ? `0${time}` : time;
+	};
 
-    let hours, minutes, seconds ;
-    
-    const getTime = () => {
-        const date = new Date();
-        hours = timeFormat(date.getHours());
-        minutes = timeFormat(date.getMinutes());
-        seconds = timeFormat(date.getSeconds());
-    };
+	let hours, minutes, seconds;
+
+	const getTime = () => {
+		const date = new Date();
+		hours = timeFormat(date.getHours());
+		minutes = timeFormat(date.getMinutes());
+		seconds = timeFormat(date.getSeconds());
+	};
 
 	const getDate = () => {
 		const date = new Date();
-		const week = "SUN MON TUE WED THU FRI SAT".split(" ")[date.getDay()];
+		const week = 'SUN MON TUE WED THU FRI SAT'.split(' ')[date.getDay()];
 		const day = date.getDate();
 
 		return `${week}, ${day}`;
 	};
-    
-    getTime();
-    
-    setInterval(getTime, 1000);
+
+	getTime();
+
+	setInterval(getTime, 1000);
 </script>
 
 <div

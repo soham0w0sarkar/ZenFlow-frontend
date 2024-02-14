@@ -10,7 +10,7 @@
 
 	$: seconds = count * 60;
 	$: rotation = (seconds / 3600) * 360;
-	$: if(play) handleTimer(true);
+	$: if (play) handleTimer(true);
 
 	const keydown = (e) => {
 		if (e.key === 'ArrowUp') {
@@ -32,7 +32,7 @@
 	};
 
 	const handleTimer = (start) => {
-		if(start) {
+		if (start) {
 			setInterval(timer, 1000);
 			play = true;
 		} else {
@@ -60,7 +60,7 @@
 	onDestroy(() => {
 		localStorage.setItem('count', count);
 		localStorage.setItem('seconds', seconds);
-		localStorage.setItem('play', play)
+		localStorage.setItem('play', play);
 	});
 </script>
 
@@ -88,11 +88,17 @@
 				{Math.floor(count / 60) * 60 + 45}
 			</span>
 			{#if count > 0}
-				<button class="variant-filled-surface w-1/4 h-1/4 rounded-full p-2" on:click={() => {handleTimer(!play)}} style="transform: rotate(-{rotation}deg);">
+				<button
+					class="variant-filled-surface w-1/4 h-1/4 rounded-full p-2"
+					on:click={() => {
+						handleTimer(!play);
+					}}
+					style="transform: rotate(-{rotation}deg);"
+				>
 					{#if play}
-						<IconPlayerStopFilled size={38}/>
+						<IconPlayerStopFilled size={38} />
 					{:else}
-						<IconPlayerPlayFilled size={38}/>
+						<IconPlayerPlayFilled size={38} />
 					{/if}
 				</button>
 			{/if}

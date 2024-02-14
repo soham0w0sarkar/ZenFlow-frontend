@@ -90,7 +90,7 @@
 		const intervalTime = (60 - date.getSeconds()) * 1000;
 		const intervalDate = (24 - date.getHours()) * 60 * 60 * 1000;
 
-		return { time, displayDate, intervalTime, intervalDate};
+		return { time, displayDate, intervalTime, intervalDate };
 	};
 
 	let { time, displayDate, intervalTime, intervalDate } = getTimeAndDate();
@@ -114,13 +114,13 @@
 			({ time } = getTimeAndDate());
 		}, 60000);
 
-	// 	setTimeout(async () => {
-	// 		({ displayDate } = getTimeAndDate());
-	// 	}, intervalDate);
+		// 	setTimeout(async () => {
+		// 		({ displayDate } = getTimeAndDate());
+		// 	}, intervalDate);
 
-	// 	setInterval(async () => {
-	// 		({ displayDate } = getTimeAndDate());
-	// 	}, 86400000);
+		// 	setInterval(async () => {
+		// 		({ displayDate } = getTimeAndDate());
+		// 	}, 86400000);
 	});
 </script>
 

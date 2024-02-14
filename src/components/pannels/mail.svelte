@@ -21,9 +21,9 @@
 
 		const data = await res.json();
 
-		if(data.success) {
+		if (data.success) {
 			mails = mails.filter((m, j) => {
-				return j !== i;			
+				return j !== i;
 			});
 		}
 	};
