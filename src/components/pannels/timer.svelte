@@ -1,5 +1,5 @@
 <script>
-	import { onMount } from 'svelte';
+	import { onMount, onDestroy } from 'svelte';
 	import { IconPlayerPlayFilled, IconPlayerStopFilled } from '@tabler/icons-svelte';
 
 	let count = 0;
@@ -10,6 +10,7 @@
 
 	$: seconds = count * 60;
 	$: rotation = (seconds / 3600) * 360;
+	$: if(play) handleTimer(true);
 
 	const keydown = (e) => {
 		if (e.key === 'ArrowUp') {
@@ -22,7 +23,6 @@
 	const timer = () => {
 		if (seconds > 0) {
 			seconds -= 1;
-			console.log(seconds);
 			if (seconds % 60 === 0) {
 				count -= 1;
 			}
@@ -43,6 +43,10 @@
 	};
 
 	onMount(() => {
+		count = localStorage.getItem('count') || 0;
+		seconds = localStorage.getItem('seconds', seconds);
+		play = localStorage.getItem('play', play);
+
 		document.querySelector('.point').addEventListener('click', () => {
 			if (!clicked) {
 				document.addEventListener('keydown', keydown);
@@ -51,6 +55,12 @@
 			}
 			clicked = !clicked;
 		});
+	});
+
+	onDestroy(() => {
+		localStorage.setItem('count', count);
+		localStorage.setItem('seconds', seconds);
+		localStorage.setItem('play', play)
 	});
 </script>
 
