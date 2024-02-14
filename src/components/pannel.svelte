@@ -6,7 +6,7 @@
 	import Mail from './pannels/mail.svelte';
 	import Setting from './pannels/setting.svelte';
 	import Logout from './logout.svelte';
-	import { IconCalendar, IconHourglassHigh, IconSettings, IconUser, IconMail, IconBrandGoogle } from '@tabler/icons-svelte';
+	import { IconCalendar, IconHourglassHigh, IconSettings, IconMail, IconBrandGoogle } from '@tabler/icons-svelte';
 
 	export let pannelNo;
 	export let selected;
