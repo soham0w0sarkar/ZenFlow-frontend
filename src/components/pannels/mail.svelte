@@ -10,6 +10,24 @@
 		oppend[i] = !oppend[i];
 	};
 
+	const markAsRead = async (e, i) => {
+		e.preventDefault();
+		e.stopPropagation();
+
+		const res = await fetch(`/api/widgets/markAsRead/${mails[i].id}`, {
+			method: 'POST',
+			credentials: 'include'
+		});
+
+		const data = await res.json();
+
+		if(data.success) {
+			mails = mails.filter((m, j) => {
+				return j !== i;			
+			});
+		}
+	};
+
 	onMount(async () => {
 		const res = await fetch(`/api/widgets/allMails/`, {
 			method: 'GET',
@@ -61,11 +79,7 @@
 			<button
 				class="absolute bottom-3 right-2 h-fit w-fit"
 				on:click={(e) => {
-					e.preventDefault();
-					e.stopPropagation();
-					mails = mails.filter((m, j) => {
-						return j !== i;
-					});
+					markAsRead(e, i);
 				}}
 			>
 				<IconSquare size="20" />
