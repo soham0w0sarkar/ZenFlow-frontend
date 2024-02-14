@@ -87,18 +87,6 @@
 			>
 				<IconSettings size={40} />
 			</button>
-
-			<button
-				aria-label="sidebar-icon"
-				id="6"
-				class="flex justify-center p-2 m-1"
-				on:click={(e) => {
-					handleClick(+e.currentTarget.id, e.currentTarget.title);
-				}}
-				title="Profile"
-			>
-				<IconUser size={40} />
-			</button>
 		</div>
 	</div>
 </div>

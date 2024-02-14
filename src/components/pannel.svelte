@@ -37,10 +37,6 @@
 				icon = IconSettings;
 				pannel = Setting;
 				break;
-			case 6:
-				icon = IconUser;
-				pannel = '';
-				break;
 			default:
 				icon = IconGoogle;
 				pannel = Google;
