@@ -33,6 +33,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@tabler/icons-svelte": "^2.45.0"
+		"@tabler/icons-svelte": "^2.45.0",
+		"@vercel/speed-insights": "^1.0.10"
 	}
 }

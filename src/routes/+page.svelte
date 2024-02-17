@@ -3,6 +3,9 @@
 	import Weather from '../components/cards/weather.svelte';
 	import { onMount } from 'svelte';
 	import { backgroundUrl, currentCard } from '../lib/store.js';
+	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
+
+	injectSpeedInsights();
 
 	let isMounted = false;
 	let card;
