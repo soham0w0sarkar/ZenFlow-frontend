@@ -1,0 +1,12 @@
+{
+    "rewrites": [
+      {
+        "source": "/api/:path*",
+        "destination": "https://zenflow-s63h.onrender.com/api/v1/:path*"
+      },
+      {
+        "source": "/api/:path*/",
+        "destination": "https://zenflow-s63h.onrender.com/api/v1/:path*/"
+      }
+    ]
+}
