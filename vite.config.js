@@ -7,13 +7,11 @@ export default defineConfig({
 	server: {
 		proxy: {
 			'/api': {
-				target: 'https://zenflow-s63h.onrender.com',
+				target: 'https://zenflow-h7jz.onrender.com/',
 				changeOrigin: true,
 				rewrite: (path) => path.replace(/^\/api/, '/api/v1')
 			}
 		}
 	},
-	kit: {
-		
-	}
+	kit: {}
 });
