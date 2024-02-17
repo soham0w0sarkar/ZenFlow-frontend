@@ -16,3 +16,13 @@ const config = {
 	}
 };
 export default config;
+
+// "dev": "vite dev",
+// "build": "vite build",
+// "preview": "vite preview",
+// "lint": "prettier --check . && eslint .",
+// "format": "prettier --write ."
+
+// "@sveltejs/kit": "^2.5.0",
+// "@tabler/icons-svelte": "^2.45.0",
+// "@vercel/speed-insights": "^1.0.10"
