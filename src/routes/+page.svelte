@@ -2,8 +2,24 @@
 	import Time from './../components/cards/time.svelte';
 	import Weather from '../components/cards/weather.svelte';
 	import { onMount } from 'svelte';
-	import { backgroundUrl, currentCard } from '../lib/store.js';
+	import { isAuthenticated, backgrounds, backgroundUrl, joke, currentCard } from '../lib/store.js';
 	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
+
+	export const Fetch = async (url) => {
+		try {
+				const response = await fetch(url, {
+					method: "GET",
+					credentials: 'include'
+				});
+
+				const data = await response.json();
+
+				return data;
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
 
 	injectSpeedInsights();
 
@@ -36,8 +52,20 @@
 		}
 	}
 
-	onMount(() => {
+	onMount(async () => {
 		isMounted = true;
+
+		const status = await Fetch(`/api/auth/status`);
+		const background = await Fetch(`/api/background/getBackground`);
+		const Joke = await Fetch(`/api/widgets/jokes`);
+
+		if (status.success) $isAuthenticated = status.success;
+		if (background.success) {
+			$backgrounds = [...background?.backgrounds];
+			$backgroundUrl = background?.currentBackground;
+		}
+		if (Joke.success) $joke = Joke.joke;
+
 		setBackgorund();
 
 		document.addEventListener('keydown', (e) => {
