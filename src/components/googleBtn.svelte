@@ -1,35 +1,20 @@
 <script>
-	import { isAuthenticated } from './../lib/store.js';
-
 	const params = `scrollbars=no,resizable=no, status=no, location=no, toolbar=no, menubar=no,
 width=1000, height=600, left=100, top=100`;
+
+	let userId;
 
 	const handleClick = async () => {
 		const google = await fetch(`/api/auth/googleLogin`, {
 			method: 'GET',
 			credentials: 'include',
 		});
+	
 		const data = await google.json();
 
-		if (data.success) {
-			const newWindow = window.open(data.loginUrl, 'loginWindow', params);
-			if (window.focus) newWindow.focus();
-			
-			
-			newWindow.onload = () => {
-				newWindow.addEventListener('beforeunload', () => {
-					$isAuthenticated = true;
-				});
-				
-				const interval = setInterval(() => {
-					if (newWindow.location.href.includes('zen-flow.vercel.app')) {
-                		newWindow.close();
-                		clearInterval(interval);
-            		}
-				}, 100);
-			};
-			
-		}
+		if(data.success) {
+			window.location.href = data.loginUrl;
+		};
 	};
 </script>
 
