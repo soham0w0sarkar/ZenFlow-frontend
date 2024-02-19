@@ -7,19 +7,18 @@
 
 	export const Fetch = async (url) => {
 		try {
-				const response = await fetch(url, {
-					method: "GET",
-					credentials: 'include'
-				});
+			const response = await fetch(url, {
+				method: 'GET',
+				credentials: 'include'
+			});
 
-				const data = await response.json();
+			const data = await response.json();
 
-				return data;
+			return data;
 		} catch (error) {
 			console.error(error);
 		}
 	};
-
 
 	injectSpeedInsights();
 

@@ -7,14 +7,14 @@ width=1000, height=600, left=100, top=100`;
 	const handleClick = async () => {
 		const google = await fetch(`/api/auth/googleLogin`, {
 			method: 'GET',
-			credentials: 'include',
+			credentials: 'include'
 		});
-	
+
 		const data = await google.json();
 
-		if(data.success) {
+		if (data.success) {
 			window.location.href = data.loginUrl;
-		};
+		}
 	};
 </script>
 

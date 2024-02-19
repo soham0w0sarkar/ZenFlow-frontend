@@ -1,12 +1,12 @@
 {
-    "rewrites": [
-      {
-        "source": "/api/:path*",
-        "destination": "https://zenflow-h7jz.onrender.com/api/v1/:path*"
-      },
-      {
-        "source": "/api/:path*/",
-        "destination": "https://zenflow-h7jz.onrender.com/api/v1/:path*/"
-      }
-    ]
+	"rewrites": [
+		{
+			"source": "/api/:path*",
+			"destination": "https://zenflow-h7jz.onrender.com/api/v1/:path*"
+		},
+		{
+			"source": "/api/:path*/",
+			"destination": "https://zenflow-h7jz.onrender.com/api/v1/:path*/"
+		}
+	]
 }
