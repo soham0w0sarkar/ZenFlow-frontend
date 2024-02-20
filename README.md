@@ -36,19 +36,6 @@ Zenflow is a productivity Chrome extension designed to enhance your browsing exp
 - Use keyboard shortcuts for quick navigation and interaction.
 - Press the Escape key to reset the currently displayed component.
 
-## Installation
-
-To install Zenflow, follow these steps:
-1. Clone or download this repository to your local machine.
-2. Open Google Chrome and navigate to `chrome://extensions`.
-3. Enable Developer Mode by toggling the switch in the top right corner.
-4. Click on "Load unpacked" and select the directory where you cloned/downloaded the repository.
-5. Zenflow should now be installed and ready to use.
-
-## Usage
-
-Once installed, Zenflow will be accessible through your Chrome browser. Simply click on the extension icon to access its features. You can switch between the time, weather, Gmail, and Google Calendar components, customize backgrounds, and enjoy a touch of humor with the random jokes.
-
 ## Contributing
 
 Contributions are welcome! If you have ideas for new features, improvements, or bug fixes, feel free to submit a pull request. Please ensure that your code follows the established coding standards and conventions.
