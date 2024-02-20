@@ -54,15 +54,7 @@
 	onMount(async () => {
 		isMounted = true;
 
-		const status = await Fetch(`/api/auth/status`);
-		const background = await Fetch(`/api/background/getBackground`);
 		const Joke = await Fetch(`/api/widgets/jokes`);
-
-		if (status.success) $isAuthenticated = status.success;
-		if (background.success) {
-			$backgrounds = [...background.backgrounds];
-			$backgroundUrl = background.currentBackground;
-		}
 		if (Joke.success) $joke = Joke.joke;
 
 		setBackgorund();
