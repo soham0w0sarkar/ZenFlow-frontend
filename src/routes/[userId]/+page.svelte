@@ -28,4 +28,8 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Processing.............</title>
+</svelte:head>
+
 <div class="h-full w-full flex justify-center items-center text-5xl">PROCESSING ......</div>
