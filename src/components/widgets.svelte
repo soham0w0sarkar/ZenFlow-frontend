@@ -24,7 +24,6 @@
 			case '04n':
 				return IconCloudFilled;
 			case '09d':
-			case '09d':
 			case '09n':
 			case '10d':
 			case '10n':
@@ -93,7 +92,7 @@
 		return { time, displayDate, intervalTime, intervalDate };
 	};
 
-	let { time, displayDate, intervalTime, intervalDate } = getTimeAndDate();
+	let { time, displayDate, intervalTime } = getTimeAndDate();
 
 	onMount(async () => {
 		$weather = await getLocation();

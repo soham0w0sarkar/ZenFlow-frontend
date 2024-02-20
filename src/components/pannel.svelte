@@ -38,7 +38,7 @@
 				pannel = Setting;
 				break;
 			default:
-				icon = IconGoogle;
+				icon = IconBrandGoogle;
 				pannel = Google;
 		}
 	}

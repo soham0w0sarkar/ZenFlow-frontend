@@ -60,8 +60,8 @@
 
 		if (status.success) $isAuthenticated = status.success;
 		if (background.success) {
-			$backgrounds = [...background?.backgrounds];
-			$backgroundUrl = background?.currentBackground;
+			$backgrounds = [...background.backgrounds];
+			$backgroundUrl = background.currentBackground;
 		}
 		if (Joke.success) $joke = Joke.joke;
 

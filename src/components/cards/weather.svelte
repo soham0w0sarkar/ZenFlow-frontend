@@ -1,6 +1,6 @@
 <script>
 	import { weather } from './../../lib/store.js';
-	import { IconWind, IconArrowNarrowUp, IconSunrise, IconSunset } from '@tabler/icons-svelte';
+	import { IconWind, IconArrowNarrowUp } from '@tabler/icons-svelte';
 </script>
 
 <div

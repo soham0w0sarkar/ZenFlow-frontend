@@ -1,9 +1,4 @@
 <script>
-	const params = `scrollbars=no,resizable=no, status=no, location=no, toolbar=no, menubar=no,
-width=1000, height=600, left=100, top=100`;
-
-	let userId;
-
 	const handleClick = async () => {
 		const google = await fetch(`/api/auth/googleLogin`, {
 			method: 'GET',

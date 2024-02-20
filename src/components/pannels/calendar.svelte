@@ -1,14 +1,5 @@
 <script>
-	import {
-		IconChevronDown,
-		IconMapPin,
-		IconCalendarEvent,
-		IconFileStack,
-		IconSquarePlus,
-		IconClockHour12,
-		IconRepeat,
-		IconList
-	} from '@tabler/icons-svelte';
+	import { IconChevronDown, IconMapPin, IconCalendarEvent, IconFileStack, IconSquarePlus, IconClockHour12, IconRepeat } from '@tabler/icons-svelte';
 	import { ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
 	import { onMount } from 'svelte';
 
@@ -205,7 +196,7 @@
 				>
 					<span class="h-fit w-full">{event.summary}</span>
 					<button
-						on:click={(e) => handleClickEvents(index)}
+						on:click={() => handleClickEvents(index)}
 						class="absolute right-2 top-3 transition-all"
 						style={expand[index] ? 'rotate:180deg;' : ''}
 					>
@@ -316,7 +307,7 @@
 										class="font-medium"
 										name="medium"
 										value={value.value}
-										on:click={(e) => {
+										on:click={() => {
 											repeat = value.label;
 										}}>{value.label}</ListBoxItem
 									>
@@ -326,7 +317,7 @@
 					</span>
 				</span>
 				<span class="h-fit w-full flex gap-1 m-1 mt-2">
-					{#each Object.keys(colorId) as color, index}
+					{#each Object.keys(colorId) as index}
 						<button
 							class="rounded-full inline-block h-7 w-7 border-2 border-white transition-all"
 							id={index + 1}

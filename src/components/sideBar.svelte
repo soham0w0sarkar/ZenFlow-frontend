@@ -17,7 +17,7 @@
 		});
 	};
 
-	import { IconCalendar, IconHourglassHigh, IconSettings, IconUser, IconMail, IconBrandGoogle } from '@tabler/icons-svelte';
+	import { IconCalendar, IconHourglassHigh, IconSettings, IconMail, IconBrandGoogle } from '@tabler/icons-svelte';
 </script>
 
 <div class="parent">

@@ -57,7 +57,7 @@
 	{#each mails as mail, i}
 		<a
 			href={mail.link}
-			on:click={(e) => {
+			on:click={() => {
 				mails = mails.filter((m, j) => {
 					return j !== i;
 				});
