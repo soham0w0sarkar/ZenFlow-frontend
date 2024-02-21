@@ -98,6 +98,7 @@
 		$weather = await getLocation();
 		$weather.icon = getIcon($weather.icon);
 		let count = 0;
+		let intervalCount = 0;
 
 		setTimeout(async () => {
 			({ time } = getTimeAndDate());
@@ -106,7 +107,8 @@
 
 		setInterval(async () => {
 			({ time } = getTimeAndDate());
-			console.log('time updated on: ', time);
+			console.log('time updated on: ', time, ++intervalCount);
+
 		}, 60000);
 
 		setInterval(async () => {
