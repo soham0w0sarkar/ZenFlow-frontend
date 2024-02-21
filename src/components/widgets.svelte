@@ -105,8 +105,9 @@
 			console.log('Weather updated', count++);
 		}, 3600000);
 
-		setTimeout(async () => {
-			({ time } = getTimeAndDate());
+		const interval = setTimeout(async () => {
+			{ time } = getTimeAndDate();
+     clear interval(interval);
 		}, intervalTime);
 
 		setInterval(async () => {
