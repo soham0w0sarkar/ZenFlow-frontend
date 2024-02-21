@@ -92,12 +92,22 @@
 		return { time, displayDate, intervalTime, intervalDate };
 	};
 
-	let { time, displayDate, intervalTime } = getTimeAndDate();
+	let { time, displayDate, intervalTime, intervalDate } = getTimeAndDate();
 
 	onMount(async () => {
 		$weather = await getLocation();
 		$weather.icon = getIcon($weather.icon);
 		let count = 0;
+
+		setTimeout(async () => {
+			({ time } = getTimeAndDate());
+			console.log('time updated on: ', time);
+		}, intervalTime);
+
+		setInterval(async () => {
+			({ time } = getTimeAndDate());
+			console.log('time updated on: ', time);
+		}, 60000);
 
 		setInterval(async () => {
 			$weather = await getLocation();
@@ -105,22 +115,9 @@
 			console.log('Weather updated', count++);
 		}, 3600000);
 
-		const interval = setTimeout(async () => {
-			{ time } = getTimeAndDate();
-     clear interval(interval);
-		}, intervalTime);
-
-		setInterval(async () => {
-			({ time } = getTimeAndDate());
-		}, 60000);
-
-		// 	setTimeout(async () => {
-		// 		({ displayDate } = getTimeAndDate());
-		// 	}, intervalDate);
-
-		// 	setInterval(async () => {
-		// 		({ displayDate } = getTimeAndDate());
-		// 	}, 86400000);
+		setTimeout(async () => {
+			({ displayDate } = getTimeAndDate());
+		}, intervalDate);
 	});
 </script>
 
