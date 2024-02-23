@@ -86,31 +86,25 @@
 		const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 		const displayDate = `${weekDays[week]}, ${day}`;
-		
+		const intervalTime = (60 - date.getSeconds()) * 1000;
+		const intervalDate = (24 - date.getHours()) * 60 * 60 * 1000;
 
-		return { time, displayDate };
+		return { time, displayDate, intervalTime, intervalDate };
 	};
 
-	let { time, displayDate } = getTimeAndDate();
+	let { time, displayDate, intervalTime, intervalDate } = getTimeAndDate();
 
 	onMount(async () => {
 		$weather = await getLocation();
 		$weather.icon = getIcon($weather.icon);
-		let count = 0;
-		let intervalCount = 0;
-
-		const intervalTime = (60 - date.getSeconds()) * 1000;
-		const intervalDate = (24 - date.getHours()) * 60 * 60 * 1000;
 
 		setTimeout(async () => {
 			({ time } = getTimeAndDate());
-			console.log('time updated in timeout: ', time);
-		}, intervalTime);
 
-		setInterval(async () => {
-			({ time } = getTimeAndDate());
-			console.log('time updated in interval: ', time);
-		}, 60000);
+			setInterval(async () => {
+				({ time } = getTimeAndDate());
+			}, 60000);
+		}, intervalTime);
 
 		setInterval(async () => {
 			$weather = await getLocation();
@@ -120,6 +114,10 @@
 
 		setTimeout(async () => {
 			({ displayDate } = getTimeAndDate());
+
+			setInterval(async () => {
+				({ displayDate } = getTimeAndDate());
+			}, 86400000);
 		}, intervalDate);
 	});
 </script>
