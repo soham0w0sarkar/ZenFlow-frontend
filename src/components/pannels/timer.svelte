@@ -16,9 +16,9 @@
 
     const keydown = (e) => {
         if (e.key === 'ArrowUp') {
-            seconds += 300; // Increase by 5 minutes in seconds
+            seconds += 300; 
         } else if (e.key === 'ArrowDown') {
-            if (seconds > 0) seconds -= 60; // Decrease by 1 minute in seconds
+            if (seconds > 0) seconds -= 60;
         }
     };
 
