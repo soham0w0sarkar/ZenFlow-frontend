@@ -86,13 +86,12 @@
 		const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 		const displayDate = `${weekDays[week]}, ${day}`;
-		const intervalTime = (60 - date.getSeconds()) * 1000;
-		const intervalDate = (24 - date.getHours()) * 60 * 60 * 1000;
+		
 
-		return { time, displayDate, intervalTime, intervalDate };
+		return { time, displayDate };
 	};
 
-	let { time, displayDate, intervalTime, intervalDate } = getTimeAndDate();
+	let { time, displayDate } = getTimeAndDate();
 
 	onMount(async () => {
 		$weather = await getLocation();
@@ -100,15 +99,17 @@
 		let count = 0;
 		let intervalCount = 0;
 
+		const intervalTime = (60 - date.getSeconds()) * 1000;
+		const intervalDate = (24 - date.getHours()) * 60 * 60 * 1000;
+
 		setTimeout(async () => {
 			({ time } = getTimeAndDate());
-			console.log('time updated on: ', time);
+			console.log('time updated in timeout: ', time);
 		}, intervalTime);
 
 		setInterval(async () => {
 			({ time } = getTimeAndDate());
-			console.log('time updated on: ', time, ++intervalCount);
-
+			console.log('time updated in interval: ', time);
 		}, 60000);
 
 		setInterval(async () => {
