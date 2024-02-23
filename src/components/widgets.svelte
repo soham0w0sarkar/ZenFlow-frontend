@@ -109,7 +109,6 @@
 		setInterval(async () => {
 			$weather = await getLocation();
 			$weather.icon = getIcon($weather.icon);
-			console.log('Weather updated', count++);
 		}, 3600000);
 
 		setTimeout(async () => {

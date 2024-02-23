@@ -2,7 +2,7 @@
 	import Time from './../components/cards/time.svelte';
 	import Weather from '../components/cards/weather.svelte';
 	import { onMount } from 'svelte';
-	import { isAuthenticated, backgrounds, backgroundUrl, joke, currentCard } from '../lib/store.js';
+	import { backgroundUrl, joke, currentCard } from '../lib/store.js';
 	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 
 	export const Fetch = async (url) => {
