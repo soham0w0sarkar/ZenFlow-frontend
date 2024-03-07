@@ -8,7 +8,7 @@
 	let clicked = false;
 	let play = false;
 	let intervalId;
-	let startTime;
+	let startTime = Date.now();
 
 	$: min = Math.ceil(seconds / 60);
 	$: rotation = (seconds / 3600) * 360;
@@ -69,6 +69,7 @@
 	});
 
 	onDestroy(() => {
+		console.log('destroy');
 		localStorage.setItem('seconds', seconds.toString());
 		localStorage.setItem('play', play.toString());
 		localStorage.setItem('startTime', startTime.toString());
