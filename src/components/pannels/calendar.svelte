@@ -320,8 +320,8 @@
 					{#each Object.keys(colorId) as index}
 						<button
 							class="rounded-full inline-block h-7 w-7 border-2 border-white transition-all"
-							id={index + 1}
-							style="background-color: {colorId[index + 1]}; {currentColorId == index + 1 ? 'border: none' : ''}"
+							id={index}
+							style="background-color: {colorId[index]}; {currentColorId == index ? 'border: none' : ''}"
 							on:click={changeColor}
 						>
 						</button>
