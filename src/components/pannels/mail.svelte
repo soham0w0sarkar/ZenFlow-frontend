@@ -25,6 +25,9 @@
 			mails = mails.filter((m, j) => {
 				return j !== i;
 			});
+			if (mails.length == 0) {
+				mails = [{ senderName: 'No Mail', subject: 'No Mail', short: 'No Mail', link: '#' }];
+			}
 		}
 	};
 
