@@ -3,7 +3,6 @@
 	import Weather from '../components/cards/weather.svelte';
 	import { onMount } from 'svelte';
 	import { backgroundUrl, joke, currentCard } from '../lib/store.js';
-	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 
 	export const Fetch = async (url) => {
 		try {
@@ -19,8 +18,6 @@
 			console.error(error);
 		}
 	};
-
-	injectSpeedInsights();
 
 	let isMounted = false;
 	let card;

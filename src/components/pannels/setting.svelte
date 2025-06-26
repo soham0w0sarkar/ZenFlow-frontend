@@ -51,7 +51,8 @@
 	{#each $backgrounds as bg}
 		<div class="w-2/3 h-1/6 rounded-md m-2 shadow-xl bg-cover relative image" style="background-image: url('{bg.url}');">
 			<div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 buttons">
-				<button aria-label="set-background" class="m-2 p-2 rounded hover:shadow-glow" on:click={(e) => handleSet(e, bg)}><IconCheck /></button>
+				<button aria-label="set-background" class="m-2 p-2 rounded hover:shadow-glow" on:click={(e) => handleSet(e, bg)}><IconCheck /></button
+				>
 				<button aria-label="delete" class="m-2 p-2 rounded hover:shadow-glow" on:click={(e) => handleDelete(e, bg)}><IconTrash /></button>
 			</div>
 		</div>

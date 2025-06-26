@@ -84,7 +84,11 @@
 			monthValue = [
 				{
 					value: ` 'RRULE:FREQ=MONTHLY;BYDAY=${dayPosition}${day}' `,
-					label: 'Monthly on the ' + 'first second third'.split(' ')[dayPosition - 1] + ' ' + date.toLocaleDateString('en-US', { weekday: 'long' })
+					label:
+						'Monthly on the ' +
+						'first second third'.split(' ')[dayPosition - 1] +
+						' ' +
+						date.toLocaleDateString('en-US', { weekday: 'long' })
 				}
 			];
 		}
@@ -274,7 +278,12 @@
 						bind:value={startTime}
 					/>
 					-
-					<input type="time" class="bg-inherit p-0 border-transparent focus:border-transparent focus:ring-0" name="endTime" bind:value={endTime} />
+					<input
+						type="time"
+						class="bg-inherit p-0 border-transparent focus:border-transparent focus:ring-0"
+						name="endTime"
+						bind:value={endTime}
+					/>
 				</span>
 				<span class="h-fit w-full text-xl m-1 flex justify-start">
 					<IconCalendarEvent class="mr-1" />
@@ -285,7 +294,12 @@
 						bind:value={startDate}
 					/>
 					-
-					<input type="date" class="bg-inherit p-0 border-transparent focus:border-transparent focus:ring-0" name="endDate" bind:value={endDate} />
+					<input
+						type="date"
+						class="bg-inherit p-0 border-transparent focus:border-transparent focus:ring-0"
+						name="endDate"
+						bind:value={endDate}
+					/>
 				</span>
 				<span class="h-fit w-full text-xl m-1 flex justify-start">
 					<IconRepeat class="mr-1" />

@@ -7,7 +7,7 @@ export default defineConfig({
 	server: {
 		proxy: {
 			'/api': {
-				target: 'https://zenflow-h7jz.onrender.com/',
+				target: 'http://localhost:9090/',
 				changeOrigin: true,
 				rewrite: (path) => path.replace(/^\/api/, '/api/v1')
 			}
