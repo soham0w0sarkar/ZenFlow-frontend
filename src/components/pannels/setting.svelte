@@ -1,6 +1,7 @@
 <script>
 	import { backgrounds, backgroundUrl } from '../../lib/store.js';
 	import { IconCheck, IconTrash } from '@tabler/icons-svelte';
+	import { PUBLIC_API_URL } from '$env/static/public';
 
 	const handleDelete = async (e, bg) => {
 		e.stopPropagation();
@@ -22,7 +23,7 @@
 	};
 
 	const deleteBackground = async (id) => {
-		await fetch(`/api/background/deleteBackground/${id}`, {
+		await fetch(`${PUBLIC_API_URL}/background/deleteBackground/${id}`, {
 			method: 'DELETE',
 			credentials: 'include'
 		});
@@ -39,7 +40,7 @@
 	};
 
 	const setBackground = async (id) => {
-		await fetch(`/api/background/currentBackground/${id}`, {
+		await fetch(`${PUBLIC_API_URL}/background/currentBackground/${id}`, {
 			method: 'POST',
 			credentials: 'include'
 		});

@@ -41,7 +41,7 @@
 <style>
 	@font-face {
 		font-family: 'Clock_font';
-		src: url('src/fonts/clock_font.ttf');
+		src: url('/fonts/clock_font.ttf');
 	}
 
 	.card {

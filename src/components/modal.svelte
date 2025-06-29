@@ -2,6 +2,7 @@
 	import { FileDropzone } from '@skeletonlabs/skeleton';
 	import { backgroundUrl, backgrounds } from '../lib/store.js';
 	import { IconX } from '@tabler/icons-svelte';
+	import { PUBLIC_API_URL } from '$env/static/public';
 
 	export let showModal;
 
@@ -18,7 +19,7 @@
 		const formData = new FormData();
 		formData.append('file', file[0]);
 		try {
-			const res = await fetch(`/api/background/setBackground`, {
+			const res = await fetch(`${PUBLIC_API_URL}/background/setBackground`, {
 				method: 'POST',
 				body: formData,
 				credentials: 'include'

@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import Spinner from '../spinner.svelte';
 	import { IconChevronDown, IconSquare } from '@tabler/icons-svelte';
+	import { PUBLIC_API_URL } from '$env/static/public';
 
 	let mails = [];
 	let oppend = [];
@@ -14,7 +15,7 @@
 		e.preventDefault();
 		e.stopPropagation();
 
-		const res = await fetch(`/api/widgets/markAsRead/${mails[i].id}`, {
+		const res = await fetch(`${PUBLIC_API_URL}/widgets/markAsRead/${mails[i].id}`, {
 			method: 'POST',
 			credentials: 'include'
 		});
@@ -32,7 +33,7 @@
 	};
 
 	onMount(async () => {
-		const res = await fetch(`/api/widgets/allMails/`, {
+		const res = await fetch(`${PUBLIC_API_URL}/widgets/allMails/`, {
 			method: 'GET',
 			credentials: 'include'
 		});

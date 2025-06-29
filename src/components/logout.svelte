@@ -1,10 +1,11 @@
 <script>
 	import { IconPower } from '@tabler/icons-svelte';
 	import { isAuthenticated } from '../lib/store.js';
-
+	import { PUBLIC_API_URL } from '$env/static/public';
+	
 	const logout = async () => {
 		try {
-			const res = await fetch(`/api/auth/logout`, {
+			const res = await fetch(`${PUBLIC_API_URL}/auth/logout`, {
 				method: 'GET',
 				credentials: 'include'
 			});

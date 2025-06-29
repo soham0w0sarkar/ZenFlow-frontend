@@ -2,7 +2,8 @@
 	import Time from './../components/cards/time.svelte';
 	import Weather from '../components/cards/weather.svelte';
 	import { onMount } from 'svelte';
-	import { backgroundUrl, joke, currentCard } from '../lib/store.js';
+	import { backgroundUrl, joke, currentCard, isAuthenticated, backgrounds } from '../lib/store.js';
+	import { PUBLIC_API_URL } from '$env/static/public';
 
 	export const Fetch = async (url) => {
 		try {
@@ -10,9 +11,7 @@
 				method: 'GET',
 				credentials: 'include'
 			});
-
 			const data = await response.json();
-
 			return data;
 		} catch (error) {
 			console.error(error);
@@ -49,9 +48,31 @@
 	}
 
 	onMount(async () => {
+		// Moved logic from +page.js
+		const statusRes = await fetch(`${PUBLIC_API_URL}/auth/status`, {
+			method: 'GET',
+			credentials: 'include'
+		});
+		const status = await statusRes.json();
+
+		if (status.success) {
+			isAuthenticated.set(true);
+
+			const backgroundsRes = await fetch(`${PUBLIC_API_URL}/background/getBackground`, {
+				method: 'GET',
+				credentials: 'include'
+			});
+			const backgroundsData = await backgroundsRes.json();
+
+			if (backgroundsData.success && backgroundsData.backgrounds.length > 0) {
+				backgrounds.set(backgroundsData.backgrounds);
+				backgroundUrl.set(backgroundsData.currentBackground);
+			}
+		}
+
 		isMounted = true;
 
-		const Joke = await Fetch(`/api/widgets/jokes`);
+		const Joke = await Fetch(`${PUBLIC_API_URL}/widgets/jokes`);
 		if (Joke.success) $joke = Joke.joke;
 
 		setBackgorund();

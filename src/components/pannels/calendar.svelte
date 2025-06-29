@@ -2,7 +2,8 @@
 	import { IconChevronDown, IconMapPin, IconCalendarEvent, IconFileStack, IconSquarePlus, IconClockHour12, IconRepeat } from '@tabler/icons-svelte';
 	import { ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
 	import { onMount } from 'svelte';
-
+	import { PUBLIC_API_URL } from '$env/static/public';
+	
 	const colorId = {
 		1: 'rgba(121, 134, 203, 0.3)',
 		2: 'rgba(51, 182, 121, 0.3)',
@@ -116,7 +117,7 @@
 
 	const getEvents = async () => {
 		try {
-			const res = await fetch(`/api/widgets/calendar/`, {
+			const res = await fetch(`${PUBLIC_API_URL}/widgets/calendar/`, {
 				method: 'GET',
 				credentials: 'include'
 			});
@@ -134,7 +135,7 @@
 
 	const createEvents = async () => {
 		try {
-			const res = await fetch(`/api/widgets/calendar/`, {
+			const res = await fetch(`${PUBLIC_API_URL}/widgets/calendar/`, {
 				method: 'POST',
 				credentials: 'include',
 				headers: {
