@@ -1,7 +1,7 @@
 <script>
-	import { PUBLIC_API_URL } from '$env/static/public';
+	 
 	const handleClick = async () => {
-		const google = await fetch(`${PUBLIC_API_URL}/auth/googleLogin`, {
+		const google = await fetch(`http://localhost:9090/api/v1/auth/googleLogin`, {
 			method: 'GET',
 			credentials: 'include'
 		});

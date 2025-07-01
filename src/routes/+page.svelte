@@ -3,7 +3,7 @@
 	import Weather from '../components/cards/weather.svelte';
 	import { onMount } from 'svelte';
 	import { backgroundUrl, joke, currentCard, isAuthenticated, backgrounds } from '../lib/store.js';
-	import { PUBLIC_API_URL } from '$env/static/public';
+	 
 
 	export const Fetch = async (url) => {
 		try {
@@ -48,8 +48,7 @@
 	}
 
 	onMount(async () => {
-		// Moved logic from +page.js
-		const statusRes = await fetch(`${PUBLIC_API_URL}/auth/status`, {
+		const statusRes = await fetch(`http://localhost:9090/api/v1/auth/status`, {
 			method: 'GET',
 			credentials: 'include'
 		});
@@ -58,7 +57,7 @@
 		if (status.success) {
 			isAuthenticated.set(true);
 
-			const backgroundsRes = await fetch(`${PUBLIC_API_URL}/background/getBackground`, {
+			const backgroundsRes = await fetch(`http://localhost:9090/api/v1/background/getBackground`, {
 				method: 'GET',
 				credentials: 'include'
 			});
@@ -72,7 +71,7 @@
 
 		isMounted = true;
 
-		const Joke = await Fetch(`${PUBLIC_API_URL}/widgets/jokes`);
+		const Joke = await Fetch(`http://localhost:9090/api/v1/widgets/jokes`);
 		if (Joke.success) $joke = Joke.joke;
 
 		setBackgorund();

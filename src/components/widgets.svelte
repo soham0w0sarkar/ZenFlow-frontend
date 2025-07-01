@@ -2,7 +2,7 @@
 	import { currentCard, weather } from './../lib/store.js';
 	import { IconCloud, IconCloudFilled, IconCloudRain, IconCloudStorm, IconMist, IconSnowflake, IconSun } from '@tabler/icons-svelte';
 	import { onMount } from 'svelte';
-	import { PUBLIC_API_URL } from '$env/static/public';
+	 
 
 	const timeFormat = (value) => {
 		if (value < 10) {
@@ -49,7 +49,7 @@
 				navigator.geolocation.getCurrentPosition(async (position) => {
 					const { latitude, longitude } = position.coords;
 
-					const res = await fetch(`${PUBLIC_API_URL}/widgets/weather/${latitude}/${longitude}`, {
+					const res = await fetch(`http://localhost:9090/api/v1/widgets/weather/${latitude}/${longitude}`, {
 						method: 'GET',
 						credentials: 'include'
 					});
